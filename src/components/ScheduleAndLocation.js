@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Map from './Map';
 
 const SectionContainer = styled.div`
   padding: 20px;
@@ -32,7 +33,7 @@ const ScheduleAndLocation = () => {
       <Title>오시는 길</Title>
       <Schedule>2024년 5월 25일 (토) 오후 2시</Schedule>
       <Location>서울특별시 강남구 청담동 123-45, 청담웨딩홀</Location>
-      {/* <Map /> */}
+      <Map />
     </SectionContainer>
   );
 };

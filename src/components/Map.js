@@ -1,21 +1,17 @@
-// import React from 'react';
-// import '../styles/components/Map.css';
+import React from 'react';
+import { MapMarker } from 'react-kakao-maps-sdk';
 
-// const Map = () => {
-//     return (
-//         <section className="map">
-//             <p className="map-guide-title">
-//                 오시는 길
-//             </p>
-//             <p className='map-guide-place'>
-//                 더살롱드웨딩홀
-//             </p>
-//             <p className='map-guide-place-detail'>
-//                 1층 레터홀<br />
-//                 제주특별자치도 서귀포시 중앙로 105
-//             </p>
-//         </section>
-//     );
-// };
 
-// export default Map;
+const Map = () => (
+  <Map
+    center={{ lat: 33.5563, lng: 126.79581 }}
+    style={{ width: "100%", height: "360px" }}
+  >
+    <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+      <div style={{ color: "#000" }}>Hello World!</div>
+    </MapMarker>
+  </Map>
+);
+
+
+export default Map;
