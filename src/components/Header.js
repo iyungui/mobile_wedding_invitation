@@ -1,17 +1,20 @@
+// src/components/Header.js
 import React from 'react';
-import '../styles/components/Header.css';
-import headerImage from '../assests/images/header-image.png';
+import styled from 'styled-components';
+
+const HeaderContainer = styled.header`
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
 
 const Header = () => {
   return (
-    <div className="header">
-      <img src={headerImage} alt="Wedding Header" className="header-image" />
-      <div className="header-message">
-        <h1>두 사람, 결혼합니다.</h1>
-      </div>
-    </div>
+    <HeaderContainer>
+      <h1>청첩장</h1>
+    </HeaderContainer>
   );
 };
-
 
 export default Header;

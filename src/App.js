@@ -1,29 +1,43 @@
-import React, { useEffect } from 'react';
-import Header from './components/Header';
-import Message from './components/Message';
-import Profile from './components/Profile';
-import Calendar from './components/Calendar';
-import Map from './components/Map';
-import './styles/App.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
+import styled from 'styled-components';
+import GlobalStyles from './styles/GlobalStyles';
+import InvitationContent from './components/InvitationContent';
+import headerVideo from './assests/headerVideo.MP4'; // 동영상 파일 import
 
-function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1200,
-    });
-  }, []);
+const VideoSection = styled.section`
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+`;
 
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  // 전체 화면을 채우도록 설정
+`;
+
+const ContentSection = styled.section`
+  padding: 20px;
+  background-color: #f5f5f5;
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Message />
-      <Profile />
-      <Calendar />
-      <Map />
-    </div>
+    <>
+      <GlobalStyles />
+      <VideoSection>
+        <Video
+          src={headerVideo}
+          autoPlay
+          muted
+          playsInline
+        />
+      </VideoSection>
+      <ContentSection>
+        <InvitationContent />
+      </ContentSection>
+    </>
   );
-}
+};
 
 export default App;
