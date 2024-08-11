@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +7,7 @@ const RSVPContainer = styled.div`
   text-align: left;
   display: inline-block;
   width: 100%;
-  max-width: 400px; /* 최대 너비 설정 */
+  max-width: 400px;
 `;
 
 const Title = styled.h2`
@@ -62,6 +63,20 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+`;
+
 const SubmitButton = styled.button`
   padding: 15px;
   font-size: 16px;
@@ -83,14 +98,69 @@ const SubmitButton = styled.button`
 `;
 
 const RSVP = () => {
+  // 상태 관리
   const [side, setSide] = useState('');
   const [attendance, setAttendance] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [attendees, setAttendees] = useState('');
   const [meal, setMeal] = useState('');
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("폼이 제출되었습니다.");
+
+  // 유효성 검사 상태
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false); // 제출 시점 확인
+  const [success, setSuccess] = useState(false); // 성공 여부
+
+  const validate = () => {
+    let formErrors = {};
+
+    if (!side) formErrors.side = '신랑측 또는 신부측을 선택해 주세요.';
+    if (!attendance) formErrors.attendance = '참석 여부를 선택해 주세요.';
+    if (!name) formErrors.name = '성함을 입력해 주세요.';
+    if (!phone) formErrors.phone = '대표 연락처를 입력해 주세요.';
+    if (!attendees) formErrors.attendees = '동행인원을 입력해 주세요.';
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0; // 에러가 없을 때 true 반환
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // 폼 제출 시 페이지 리로드 방지
+    setSubmitted(true);
+
+    if (validate()) {
+      // 폼 제출 성공 처리 (예: 서버에 데이터 전송 등)
+      const formData = {
+        side,
+        attendance,
+        name,
+        phone,
+        attendees,
+        meal,
+      };
+
+      try {
+        const response = await axios.post("http://localhost:5000/api/rsvp", formData);
+        console.log("폼 제출 성공: ", response.data);
+        setSuccess(true);
+        // 폼 제출 성공 후, 폼 초기화
+        setSide('');
+        setAttendance('');
+        setName('');
+        setPhone('');
+        setAttendees('');
+        setMeal('');
+        setErrors({});
+        setSubmitted(false); // 제출 상태 초기화
+
+      } catch (error) {
+        console.error("폼 제출 실패: ", error);
+        alert("참석 여부를 전달하지 못했습니다. 다시 시도해 주세요.");
+        setSuccess(false);
+      }
+    }
+  };
+
   return (
     <RSVPContainer>
       <Title>참석 여부 전달하기</Title>
@@ -110,6 +180,7 @@ const RSVP = () => {
             신부측
           </SelectButton>
         </ButtonGroup>
+        {submitted && errors.side && <ErrorMessage>{errors.side}</ErrorMessage>}
 
         <Label>참석 여부를 선택해 주세요</Label>
         <ButtonGroup>
@@ -127,15 +198,38 @@ const RSVP = () => {
             참석 가능
           </SelectButton>
         </ButtonGroup>
+        {submitted && errors.attendance && <ErrorMessage>{errors.attendance}</ErrorMessage>}
 
         <Label htmlFor="name">성함(필수)</Label>
-        <Input type="text" id="name" name="name" required />
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        {submitted && errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
 
-        <Label htmlFor="phone">대표 연락처</Label>
-        <Input type="tel" id="phone" name="phone" />
+        <Label htmlFor="phone">대표 연락처(필수)</Label>
+        <Input
+          type="tel"
+          id="phone"
+          name="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        {submitted && errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
 
         <Label htmlFor="attendees">동행인원(본인 포함)</Label>
-        <Input type="number" id="attendees" name="attendees" min="1" />
+        <Input
+          type="number"
+          id="attendees"
+          name="attendees"
+          value={attendees}
+          onChange={(e) => setAttendees(e.target.value)}
+          min="1"
+        />
+        {submitted && errors.attendees && <ErrorMessage>{errors.attendees}</ErrorMessage>}
 
         <Label>식사 여부</Label>
         <ButtonGroup>
@@ -156,6 +250,7 @@ const RSVP = () => {
 
         <SubmitButton type="submit">참석 여부 전달하기</SubmitButton>
       </Form>
+      {success && <SuccessMessage>참석 여부가 성공적으로 전달되었습니다.</SuccessMessage>}
     </RSVPContainer>
   );
 };
