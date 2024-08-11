@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Messages } from './Messages';
 import Profile from './Profile';
 import ScheduleAndLocation from './ScheduleAndLocation';
+import RSVP from './RSVP';
 
 // 폰트 적용 (예: Google Fonts 사용)
 const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
@@ -20,6 +21,7 @@ const InvitationContent = () => {
       <Messages />
       <Profile />
       <ScheduleAndLocation />
+      <RSVP />
     </ContentContainer>
   );
 };
