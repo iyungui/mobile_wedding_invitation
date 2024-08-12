@@ -11,7 +11,7 @@ const GalleryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px; /* 이미지 간의 간격을 조금 넓게 설정 */
-  max-width: 1000px; /* 중앙 정렬을 위한 최대 너비 설정 */
+  max-width: 400px; /* 중앙 정렬을 위한 최대 너비 설정 */
   width: 100%;
 `;
 
@@ -50,8 +50,6 @@ const Gallery = () => {
     '/photos/IMG_5469.JPG',
     '/photos/IMG_5470.JPG',
     '/photos/IMG_5471.JPG',
-    '/photos/MainImage.JPG',
-    '/photos/SubMainImage.JPG',
     // 추가 이미지 경로들...
   ];
 
