@@ -14,13 +14,18 @@ const ContentContainer = styled.div`
   padding: 20px;
   text-align: center;
   line-height: 2;
-  width:100%;
+  width: 100%;
+  max-width: 1200px;  /* 큰 화면에서의 최대 폭 설정 */
+  margin: 0 auto;  /* 중앙 정렬 */
   font-family: ${fontFamily};
 `;
 
 const Section = styled(motion.div)`
-  padding: 40px 0; // 상하 20px 패딩
+  padding: 40px 0;
   text-align: center;
+  @media (max-width: 768px) {
+    padding: 20px 0;  /* 작은 화면에서는 패딩을 줄임 */
+  }
 `;
 
 const InvitationContent = () => {
