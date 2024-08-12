@@ -7,7 +7,6 @@ import { Messages } from './Messages';
 import Profile from './Profile';
 import ScheduleAndLocation from './ScheduleAndLocation';
 import RSVP from './RSVP';
-import Account from './Account_layout/Account';
 import Gallery from './Gallery';
 
 const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
