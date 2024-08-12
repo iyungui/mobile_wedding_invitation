@@ -4,6 +4,7 @@ import { Messages } from './Messages';
 import Profile from './Profile';
 import ScheduleAndLocation from './ScheduleAndLocation';
 import RSVP from './RSVP';
+import Account from './Account_layout/Account';
 
 // 폰트 적용 (예: Google Fonts 사용)
 const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
@@ -15,13 +16,28 @@ const ContentContainer = styled.div`
   font-family: ${fontFamily};
 `;
 
+const Section = styled.div`
+  padding: 20px 0; // 상하 20px 패딩
+`;
+
 const InvitationContent = () => {
   return (
     <ContentContainer>
-      <Messages />
-      <Profile />
-      <ScheduleAndLocation />
-      <RSVP />
+      <Section>
+        <Messages />
+      </Section>
+      <Section>
+        <Profile />
+      </Section>
+      <Section>
+        <ScheduleAndLocation />
+      </Section>
+      <Section>
+        <RSVP />
+      </Section>
+      <Section>
+        <Account />
+      </Section>
     </ContentContainer>
   );
 };

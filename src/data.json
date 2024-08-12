@@ -1,0 +1,54 @@
+{
+  "hostInfo": [
+    {
+      "host": "신랑측",
+      "accountInfo": [
+        {
+          "name": "장세모",
+          "relation": "신랑",
+          "bank": "카카오뱅크",
+          "account": "1234-56-789012",
+          "kakaopayAccount": "",
+          "tossAccount": ""
+        },
+        {
+          "name": "장아빠",
+          "relation": "아버지",
+          "bank": "농협",
+          "account": "123-45-678901"
+        },
+        {
+          "name": "이엄마",
+          "relation": "어머니",
+          "bank": "농협",
+          "account": "123-45-678901"
+        }
+      ]
+    },
+    {
+      "host": "신부측",
+      "accountInfo": [
+        {
+          "name": "황네모",
+          "relation": "신부",
+          "bank": "토스뱅크",
+          "account": "1234-5678-9012",
+          "kakaopayAccount": "",
+          "tossAccount": ""
+        },
+        {
+          "name": "황아빠",
+          "relation": "아버지",
+          "bank": "농협",
+          "account": "123-45-678901"
+        },
+        {
+          "name": "이엄마",
+          "relation": "어머니",
+          "bank": "농협",
+          "account": "123-45-678901"
+        }
+      ]
+    }
+  ]
+}
