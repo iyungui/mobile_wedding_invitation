@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { Messages } from './Messages';
 import Profile from './Profile';
 import ScheduleAndLocation from './ScheduleAndLocation';
 import RSVP from './RSVP';
 import Account from './Account_layout/Account';
 import Gallery from './Gallery';
-import Fade from 'react-reveal/Fade';  // react-reveal에서 Fade 컴포넌트 임포트
 
-// 폰트 적용 (예: Google Fonts 사용)
 const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
 
 const ContentContainer = styled.div`
@@ -16,45 +15,62 @@ const ContentContainer = styled.div`
   text-align: center;
   line-height: 2;
   font-family: ${fontFamily};
-  scroll-behavior: smooth; /* 부드러운 스크롤 효과 */
 `;
 
-const Section = styled.div`
-  padding: 20px 0; // 상하 20px 패딩
+const Section = styled(motion.div)`
+  padding: 40px 0; // 상하 20px 패딩
 `;
 
 const InvitationContent = () => {
   return (
     <ContentContainer>
-      <Section>
-        <Fade bottom duration={1000}> {/* duration 속성으로 애니메이션의 부드러움 조정 */}
-          <Messages />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Messages />
       </Section>
-      <Section>
-        <Fade bottom duration={1000}>
-          <Profile />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Profile />
       </Section>
-      <Section>
-        <Fade bottom duration={1000}>
-          <ScheduleAndLocation />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <ScheduleAndLocation />
       </Section>
-      <Section>
-        <Fade bottom duration={1000}>
-          <RSVP />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <RSVP />
       </Section>
-      <Section>
-        <Fade bottom duration={1000}>
-          <Account />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Account />
       </Section>
-      <Section>
-        <Fade bottom duration={1000}>
-          <Gallery />
-        </Fade>
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Gallery />
       </Section>
     </ContentContainer>
   );
