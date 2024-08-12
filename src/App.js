@@ -22,8 +22,8 @@ const GradientOverlay = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 30%;  /* 그라데이션의 높이를 조절할 수 있습니다 */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  height: 10%;  /* 그라데이션의 높이를 조절할 수 있습니다 */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
 `;
 
 
