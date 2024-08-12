@@ -13,7 +13,7 @@ const VideoSection = styled.section`
 
 const Video = styled.video`
   width: 100%;
-  height: 100%;
+  height: auto%;
   object-fit: cover;  // 전체 화면을 채우도록 설정
 `;
 
