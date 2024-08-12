@@ -11,7 +11,7 @@ const RSVPContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
@@ -34,20 +34,20 @@ const ButtonGroup = styled.div`
   margin-bottom: 20px;
 `;
 
+
 const SelectButton = styled.button`
   flex: 1;
   padding: 10px;
   font-size: 14px;
-  background-color: ${props => (props.selected ? '#673ab7' : '#fff')};
-  color: ${props => (props.selected ? '#fff' : '#673ab7')};
-  border: 2px solid #673ab7;
-  border-radius: 5px;
+  font-weight: ${props => (props.selected ? '700' : '400')};
+  background-color: #fff;  /* 배경색을 모두 흰색으로 설정 */
+  color: ${props => (props.selected ? '#1A5319' : '#000000')};  /* 선택 시 텍스트 색상을 #1A5319로 변경 */
+  border: ${props => (props.selected ? '2px' : '1.5px')} solid ${props => (props.selected ? '#1A5319' : '#c8c8c8')};  /* 선택된 경우 두꺼운 #1A5319 border */
   margin-right: ${props => (props.marginRight ? '10px' : '0')};
   cursor: pointer;
 
   &:hover {
-    background-color: #5e35b1;
-    color: white;
+    border-color: #1A5319;  /* 호버 시 border 색상을 #1A5319로 변경 */
   }
 
   &:focus {
@@ -55,12 +55,12 @@ const SelectButton = styled.button`
   }
 `;
 
+
 const Input = styled.input`
   padding: 10px;
   font-size: 14px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
 `;
 
 const ErrorMessage = styled.p`
@@ -81,15 +81,14 @@ const SubmitButton = styled.button`
   padding: 15px;
   font-size: 16px;
   font-weight: 600;
-  background-color: #673ab7;
+  background-color: #1A5319;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
 
   &:hover {
-    background-color: #5e35b1;
+    background-color: #1A5319;
   }
 
   &:focus {
@@ -97,162 +96,183 @@ const SubmitButton = styled.button`
   }
 `;
 
+const LoadingMessage = styled.p`
+  color: #1A5319;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+`;
+
+
 const RSVP = () => {
-  // 상태 관리
-  const [side, setSide] = useState('');
-  const [attendance, setAttendance] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [attendees, setAttendees] = useState('');
-  const [meal, setMeal] = useState('');
-
-  // 유효성 검사 상태
-  const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false); // 제출 시점 확인
-  const [success, setSuccess] = useState(false); // 성공 여부
-
-  const validate = () => {
-    let formErrors = {};
-
-    if (!side) formErrors.side = '신랑측 또는 신부측을 선택해 주세요.';
-    if (!attendance) formErrors.attendance = '참석 여부를 선택해 주세요.';
-    if (!name) formErrors.name = '성함을 입력해 주세요.';
-    if (!phone) formErrors.phone = '대표 연락처를 입력해 주세요.';
-    if (!attendees) formErrors.attendees = '동행인원을 입력해 주세요.';
-
-    setErrors(formErrors);
-    return Object.keys(formErrors).length === 0; // 에러가 없을 때 true 반환
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // 폼 제출 시 페이지 리로드 방지
-    setSubmitted(true);
-
-    if (validate()) {
-      // 폼 제출 성공 처리 (예: 서버에 데이터 전송 등)
-      const formData = {
-        side,
-        attendance,
-        name,
-        phone,
-        attendees,
-        meal,
+    const [formData, setFormData] = useState({
+      side: '',
+      attendance: '',
+      name: '',
+      phone: '',
+      attendees: '',
+      meal: '',
+    });
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [responseMessage, setResponseMessage] = useState('');
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const handleButtonClick = (field, value) => {
+      setFormData({ ...formData, [field]: value });
+    };
+  
+    const validate = () => {
+      let formErrors = {};
+  
+      if (!formData.side) formErrors.side = '신랑측 또는 신부측을 선택해 주세요.';
+      if (!formData.attendance) formErrors.attendance = '참석 여부를 선택해 주세요.';
+      if (!formData.name) formErrors.name = '성함을 입력해 주세요.';
+      if (!formData.phone) formErrors.phone = '대표 연락처를 입력해 주세요.';
+      if (!formData.attendees) formErrors.attendees = '동행인원을 입력해 주세요.';
+  
+      return formErrors;
+    };
+  
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formErrors = validate();
+        setErrors(formErrors);
+        setSubmitted(true);
+    
+        if (Object.keys(formErrors).length === 0) {
+          setIsLoading(true);
+          setResponseMessage('');
+          
+          try {
+            const response = await axios.post("http://localhost:5000/api/rsvp", formData);
+            console.log("폼 제출 성공: ", response.data);
+            setResponseMessage('참석 여부가 성공적으로 전달되었습니다.');
+            // 폼 제출 성공 후, 폼 초기화
+            setFormData({
+              side: '',
+              attendance: '',
+              name: '',
+              phone: '',
+              attendees: '',
+              meal: '',
+            });
+            setErrors({});
+            setSubmitted(false);
+          } catch (error) {
+            console.error("폼 제출 실패: ", error);
+            setResponseMessage('참석 여부를 전달하지 못했습니다. 다시 시도해 주세요.');
+          } finally {
+            setIsLoading(false);
+          }
+        }
       };
-
-      try {
-        const response = await axios.post("http://localhost:5000/api/rsvp", formData);
-        console.log("폼 제출 성공: ", response.data);
-        setSuccess(true);
-        // 폼 제출 성공 후, 폼 초기화
-        setSide('');
-        setAttendance('');
-        setName('');
-        setPhone('');
-        setAttendees('');
-        setMeal('');
-        setErrors({});
-        setSubmitted(false); // 제출 상태 초기화
-
-      } catch (error) {
-        console.error("폼 제출 실패: ", error);
-        alert("참석 여부를 전달하지 못했습니다. 다시 시도해 주세요.");
-        setSuccess(false);
-      }
-    }
-  };
-
-  return (
-    <RSVPContainer>
-      <Title>참석 여부 전달하기</Title>
-      <Form onSubmit={handleSubmit}>
-        <ButtonGroup>
-          <SelectButton
-            selected={side === 'groom'}
-            onClick={() => setSide('groom')}
-            marginRight
-          >
-            신랑측
-          </SelectButton>
-          <SelectButton
-            selected={side === 'bride'}
-            onClick={() => setSide('bride')}
-          >
-            신부측
-          </SelectButton>
-        </ButtonGroup>
-        {submitted && errors.side && <ErrorMessage>{errors.side}</ErrorMessage>}
-
-        <Label>참석 여부를 선택해 주세요</Label>
-        <ButtonGroup>
-          <SelectButton
-            selected={attendance === 'cannot'}
-            onClick={() => setAttendance('cannot')}
-            marginRight
-          >
-            참석 불가
-          </SelectButton>
-          <SelectButton
-            selected={attendance === 'can'}
-            onClick={() => setAttendance('can')}
-          >
-            참석 가능
-          </SelectButton>
-        </ButtonGroup>
-        {submitted && errors.attendance && <ErrorMessage>{errors.attendance}</ErrorMessage>}
-
-        <Label htmlFor="name">성함(필수)</Label>
-        <Input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {submitted && errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
-
-        <Label htmlFor="phone">대표 연락처(필수)</Label>
-        <Input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        {submitted && errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
-
-        <Label htmlFor="attendees">동행인원(본인 포함)</Label>
-        <Input
-          type="number"
-          id="attendees"
-          name="attendees"
-          value={attendees}
-          onChange={(e) => setAttendees(e.target.value)}
-          min="1"
-        />
-        {submitted && errors.attendees && <ErrorMessage>{errors.attendees}</ErrorMessage>}
-
-        <Label>식사 여부</Label>
-        <ButtonGroup>
-          <SelectButton
-            selected={meal === 'yes'}
-            onClick={() => setMeal('yes')}
-            marginRight
-          >
-            식사 가능
-          </SelectButton>
-          <SelectButton
-            selected={meal === 'no'}
-            onClick={() => setMeal('no')}
-          >
-            식사 불가(답례품 수령)
-          </SelectButton>
-        </ButtonGroup>
-
-        <SubmitButton type="submit">참석 여부 전달하기</SubmitButton>
+    return (
+      <RSVPContainer>
+        <Title>참석 여부 전달하기</Title>
+        <Form onSubmit={handleSubmit}>
+          <ButtonGroup>
+            <SelectButton
+              type="button"
+              selected={formData.side === 'groom'}
+              onClick={() => handleButtonClick('side', 'groom')}
+              marginRight
+            >
+              🤵🏻 신랑측
+            </SelectButton>
+            <SelectButton
+              type="button"
+              selected={formData.side === 'bride'}
+              onClick={() => handleButtonClick('side', 'bride')}
+            >
+              👰🏻‍♀️ 신부측
+            </SelectButton>
+          </ButtonGroup>
+          {submitted && errors.side && <ErrorMessage>{errors.side}</ErrorMessage>}
+  
+          <Label>참석 여부를 선택해 주세요</Label>
+          <ButtonGroup>
+            <SelectButton
+              type="button"
+              selected={formData.attendance === 'can'}
+              onClick={() => handleButtonClick('attendance', 'can')}
+              marginRight
+            >
+              참석 가능
+            </SelectButton>
+            <SelectButton
+              type="button"
+              selected={formData.attendance === 'cannot'}
+              onClick={() => handleButtonClick('attendance', 'cannot')}
+            >
+              참석 불가
+            </SelectButton>
+          </ButtonGroup>
+          {submitted && errors.attendance && <ErrorMessage>{errors.attendance}</ErrorMessage>}
+  
+          <Label htmlFor="name">성함(필수)</Label>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          {submitted && errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+  
+          <Label htmlFor="phone">대표 연락처(필수)</Label>
+          <Input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
+          {submitted && errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
+  
+          <Label htmlFor="attendees">동행인원(본인 포함)</Label>
+          <Input
+            type="number"
+            id="attendees"
+            name="attendees"
+            value={formData.attendees}
+            onChange={handleInputChange}
+            min="1"
+          />
+          {submitted && errors.attendees && <ErrorMessage>{errors.attendees}</ErrorMessage>}
+  
+          <Label>식사 여부</Label>
+          <ButtonGroup>
+            <SelectButton
+              type="button"
+              selected={formData.meal === 'yes'}
+              onClick={() => handleButtonClick('meal', 'yes')}
+              marginRight
+            >
+              식사 가능
+            </SelectButton>
+            <SelectButton
+              type="button"
+              selected={formData.meal === 'no'}
+              onClick={() => handleButtonClick('meal', 'no')}
+            >
+              식사 불가(답례품 수령)
+            </SelectButton>
+          </ButtonGroup>
+  
+          <SubmitButton type="submit" disabled={isLoading}>
+          {isLoading ? '제출 중...' : '참석 여부 전달하기'}
+        </SubmitButton>
       </Form>
-      {success && <SuccessMessage>참석 여부가 성공적으로 전달되었습니다.</SuccessMessage>}
+      {isLoading && <LoadingMessage>제출 중입니다...</LoadingMessage>}
+      {responseMessage && <SuccessMessage>{responseMessage}</SuccessMessage>}
     </RSVPContainer>
-  );
-};
-
-export default RSVP;
+    );
+  };
+  
+  export default RSVP;

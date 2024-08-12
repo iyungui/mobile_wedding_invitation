@@ -1,9 +1,11 @@
 // App.js
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyles from './styles/GlobalStyles';
 import InvitationContent from './components/InvitationContent';
 import headerVideo from './assests/headerVideo.MP4'; // 동영상 파일 import
+import backgroundMusic from './assests/backgroundMusic.mp3'; // 음악 파일 import
+
 
 const VideoContainer = styled.div`
   position: relative;
@@ -32,10 +34,57 @@ const ContentSection = styled.section`
   background-color: #f5f5f5;
 `;
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* 버튼을 세로로 나열 */
+  gap: 20px; /* 버튼 사이 간격 */
+  z-index: 1000;
+`;
+const StartButton = styled.button`
+  padding: 20px;
+  font-size: 18px;
+  background-color: #1A5319;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+`;
+
 const App = () => {
+  const [audio, setAudio] = useState(null);
+  const [started, setStarted] = useState(false);
+
+  const handleStart = () => {
+    const audioInstance = new Audio(backgroundMusic);
+    audioInstance.play().catch(error => {
+      console.log("음악 재생 실패:", error);
+    });
+    setAudio(audioInstance);
+    setStarted(true);
+  };
+
+  const handleStartWithoutMusic = () => {
+    setStarted(true);
+  };
+  
   return (
     <>
       <GlobalStyles />
+      {!started && (
+        <Overlay>
+          <StartButton onClick={handleStart}>음악과 함께 시작하기</StartButton>
+          <StartButton onClick={handleStartWithoutMusic}>음악 없이 시작하기</StartButton>
+
+        </Overlay>
+      )}
       <VideoContainer>
       <Video
         src={headerVideo}

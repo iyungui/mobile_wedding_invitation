@@ -29,11 +29,10 @@ const Image = styled.img`
 `;
 
 const Title = styled.h2`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 30px;
   text-align: center;
-  color: #673ab7; /* 타이틀 색상 설정 */
 `;
 
 const Gallery = () => {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,6 @@ const Accordion = ({ title, children }) => {
 export default Accordion;
 
 const AccordionWrapper = styled.div`
-  font-family: ${fontFamily}; /* 폰트 적용 */
   border: 1px solid #e6ece1;
   margin-bottom: 20px;
   border-radius: 8px;

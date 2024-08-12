@@ -44,8 +44,8 @@ function Map() {
       <div
         id="map"
         style={{
-          width: "360px",
-          height: "360px",
+          width: "250px",
+          height: "250px",
         }}
       ></div>
     </div>

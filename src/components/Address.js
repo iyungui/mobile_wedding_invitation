@@ -8,7 +8,7 @@ const SectionContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 20px;
 `;
@@ -23,6 +23,7 @@ const Content = styled.p`
   font-weight: 400;
   margin-bottom: 40px;
 `;
+
 
 const Address = () => {
   return (
@@ -46,7 +47,7 @@ const Address = () => {
         </Content>
 
         <Content>
-          협소한 공간으로 인하여 화환은 정중히 사양합니다.
+          공간이 협소하여 화환은 정중히 사양합니다.
         </Content>
       </ContentContainer>
     </SectionContainer>

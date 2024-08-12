@@ -1,4 +1,3 @@
-// Profile.js
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,28 +6,26 @@ const ProfileContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  margin: 20px auto;  /* 컨테이너를 중앙에 배치 */
-  max-width: 400px;  /* 최대 폭을 조정 */
+  margin: 0 auto;
+  padding: 0;
   width: 100%;
+  max-width: 100%; /* 컨테이너의 양 옆 여백을 최소화 */
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: row; /* 모바일에서도 가로 배열 유지 */
     align-items: center;
   }
 `;
 
 const ProfileItem = styled.div`
-  margin: 0 10px;
+  flex: 1;  /* 각 항목이 동일한 너비를 가짐 */
   text-align: center;
-  max-width: 250px;
-  width: 100%;
-  @media (max-width: 768px) {
-    margin: 20px 0;
-  }
+  padding: 7px;
+  margin: 0;
 `;
 
 const ProfileImage = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100%;  /* 각 이미지가 부모의 너비를 100% 차지 */
+  height: auto;
   border-radius: 4%;
   object-fit: cover;
 `;

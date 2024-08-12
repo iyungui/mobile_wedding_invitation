@@ -12,9 +12,24 @@ code {
     monospace;
 }
 
+
 @font-face {
-  font-family: 'CustomFont';
-  src: url('./assests/fonts/SUITE-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'MaruBuri-extraLight';
+  src: url('./assests/fonts/MaruBuri-ExtraLight.ttf');
+}
+@font-face {
+  font-family: 'MaruBuri-light';
+  src: url('./assests/fonts/MaruBuri-Light.ttf');
+}
+@font-face {
+  font-family: 'MaruBuri-regular';
+  src: url('./assests/fonts/MaruBuri-Regular.ttf');
+}
+@font-face {
+  font-family: 'MaruBuri-semiBold';
+  src: url('./assests/fonts/MaruBuri-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'MaruBuri-bold';
+  src: url('./assests/fonts/MaruBuri-Bold.ttf');
 }

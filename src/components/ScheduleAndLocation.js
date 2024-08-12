@@ -4,7 +4,7 @@ import Map from './Map';
 import Address from './Address'
 
 const SectionContainer = styled.div`
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   margin: 40px 0;
 `;

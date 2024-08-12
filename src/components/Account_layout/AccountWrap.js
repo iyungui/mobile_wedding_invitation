@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import copyButtonImage from './copyButton.png';
 
-const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
-
 const AccountWrap = ({
   name,
   relation,
@@ -42,7 +40,6 @@ const AccountWrap = ({
 export default AccountWrap;
 
 const Wrapper = styled.div`
-  font-family: ${fontFamily}; /* 폰트 적용 */
   padding: 10px 0;
   border-bottom: 1px solid #dfdfdf;
   display: flex;
