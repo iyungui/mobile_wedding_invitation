@@ -46,7 +46,7 @@ const Address = () => {
         </Content>
 
         <Content>
-          협소한 공간으로 인하여 화한은 정중히 사양합니다.
+          협소한 공간으로 인하여 화환은 정중히 사양합니다.
         </Content>
       </ContentContainer>
     </SectionContainer>
