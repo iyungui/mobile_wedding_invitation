@@ -1,23 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import GlobalStyles from './styles/GlobalStyles';
-import InvitationContent from './components/InvitationContent';
-import headerVideo from './assests/headerVideo.MP4';
-import backgroundMusic from './assests/backgroundMusic.mp3';
-
-
-const MusicControl = styled.button`
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px;
-  background-color: #1A5319;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1000;
-`;
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import GlobalStyles from "./styles/GlobalStyles";
+import InvitationContent from "./components/InvitationContent";
+import headerVideo from "./assests/headerVideo.MP4";
+import backgroundMusic from "./assests/backgroundMusic.mp3";
+import soundOnIcon from "./assests/icons/1.png"; // 음악 재생 아이콘
+import soundOffIcon from "./assests/icons/2.png"; // 음소거 아이콘
 
 const VideoContainer = styled.div`
   position: relative;
@@ -36,42 +24,40 @@ const GradientOverlay = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 10%;  /* 그라데이션의 높이를 조절할 수 있습니다 */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+  height: 10%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #f5f5f5 100%
+  );
 `;
-
 
 const ContentSection = styled.section`
   width: 100%;
   background-color: #f5f5f5;
 `;
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+const AudioIconWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 색상 추가 */
+  border-radius: 50%; /* 원형으로 만들기 */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* 버튼을 세로로 나열 */
-  gap: 20px; /* 버튼 사이 간격 */
+  cursor: pointer;
   z-index: 1000;
 `;
-const StartButton = styled.button`
-  padding: 20px;
-  font-size: 18px;
-  background-color: #1A5319;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
+
+const AudioIcon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const App = () => {
-  const [started, setStarted] = useState(false);
   const [backgroundMusicPlaying, setBackgroundMusicPlaying] = useState(false);
   const audioRef = useRef(new Audio(backgroundMusic));
 
@@ -85,23 +71,11 @@ const App = () => {
     };
   }, []);
 
-  const handleStart = () => {
-    audioRef.current.play().catch(error => {
-      console.log("음악 재생 실패:", error);
-    });
-    setBackgroundMusicPlaying(true);
-    setStarted(true);
-  };
-
-  const handleStartWithoutMusic = () => {
-    setStarted(true);
-  };
-
   const toggleMusic = () => {
     if (backgroundMusicPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play().catch(error => {
+      audioRef.current.play().catch((error) => {
         console.log("음악 재생 실패:", error);
       });
     }
@@ -111,29 +85,19 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      {!started && (
-        <Overlay>
-          <StartButton onClick={handleStart}>음악과 함께 시작하기</StartButton>
-          <StartButton onClick={handleStartWithoutMusic}>음악 없이 시작하기</StartButton>
-        </Overlay>
-      )}
       <VideoContainer>
-        <Video
-          src={headerVideo}
-          autoPlay
-          muted
-          playsInline
-        />
+        <Video src={headerVideo} autoPlay muted playsInline />
         <GradientOverlay />
+        <AudioIconWrapper onClick={toggleMusic}>
+          <AudioIcon
+            src={backgroundMusicPlaying ? soundOnIcon : soundOffIcon}
+            alt="Toggle Sound"
+          />
+        </AudioIconWrapper>
       </VideoContainer>
       <ContentSection>
         <InvitationContent />
       </ContentSection>
-      {started && (
-        <MusicControl onClick={toggleMusic}>
-          {backgroundMusicPlaying ? '음악 끄기' : '음악 켜기'}
-        </MusicControl>
-      )}
     </>
   );
 };

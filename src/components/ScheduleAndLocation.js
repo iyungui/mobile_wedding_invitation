@@ -48,7 +48,7 @@ const ScheduleAndLocation = () => {
     <SectionContainer>
       <Title>오시는 길</Title>
       <Schedule>2024년 09월 22일 (일) 오전 11시 30분</Schedule>
-      <Location>서울특별시 강남구 학동로 519 (청담동 73-4번지) 빌라드지디 청담</Location>
+      <Location>서울특별시 강남구 학동로 519 (청담동 73-4번지)<br/>빌라드지디 청담</Location>
       <Map />
       <KakaoButton
         href="https://map.kakao.com/link/map/빌라드지디 청담,37.520159,127.055451"

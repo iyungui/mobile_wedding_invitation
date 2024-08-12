@@ -32,7 +32,7 @@ const ProfileImage = styled.img`
 
 const ProfileName = styled.h3`
   font-size: 18px;
-  font-weight: 600;
+  font-family: 'MaruBuri-Bold';
   margin-bottom: 5px;
 `;
 
@@ -42,13 +42,15 @@ const ProfileDescription = styled.p`
 `;
 
 const GroomThinText = styled.span`
-  color: #758694;
+  color: #000000;
+  font-family: 'MaruBuri-extraLight';
   font-size: 11px;
   padding-right: 8px;
 `;
 
 const BrideThinText = styled.span`
-  color: #E3A5C7;
+  color: #000000;
+  font-family: 'MaruBuri-extraLight';
   font-size: 11px;
   padding-right: 8px;
 `;
