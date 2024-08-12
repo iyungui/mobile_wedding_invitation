@@ -1,3 +1,6 @@
+
+// AccountWrap.js
+
 import React from 'react';
 import styled from 'styled-components';
 import copyButtonImage from './copyButton.png';
@@ -44,12 +47,12 @@ const Wrapper = styled.div`
   border-bottom: 1px solid #dfdfdf;
   display: flex;
   flex-direction: column;
-  align-items: left; /* 중앙 정렬 */
+  align-items: flex-start;
 `;
 
 const Info = styled.div`
   display: flex;
-  align-items: left;
+  align-items: flex-start;
   gap: 5px;
   margin: 5px 0;
 `;
@@ -64,14 +67,14 @@ const Name = styled.span`
 
 const Details = styled.div`
   display: flex;
-  align-items: left;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 `;
 
 const AccountInfo = styled.div`
   flex: 1;
-  text-align: left; /* 계좌 정보는 왼쪽 정렬 */
+  text-align: left;
 `;
 
 const CopyButton = styled.button`

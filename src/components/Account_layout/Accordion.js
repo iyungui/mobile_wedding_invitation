@@ -1,6 +1,8 @@
+
+// Accordion.js
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +30,7 @@ const AccordionWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  width: 100%;
+  width: 100%; /* 부모 컨테이너를 초과하지 않도록 설정 */
 `;
 
 const AccordionHeader = styled.div`

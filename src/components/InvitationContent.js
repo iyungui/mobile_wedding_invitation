@@ -8,6 +8,8 @@ import ScheduleAndLocation from "./ScheduleAndLocation";
 import RSVP from "./RSVP";
 import Gallery from "./Gallery";
 import OverlayComponent from "./OverlayComponent";
+import Account from "./Account_layout/Account";
+
 
 const fontFamily = "'MaruBuri-regular', 'Noto Sans KR', sans-serif";
 
@@ -78,6 +80,15 @@ const InvitationContent = () => {
         <RSVP />
       </Section>
 
+      <Section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Account />
+      </Section>
+      
       <Section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
