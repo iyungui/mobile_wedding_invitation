@@ -17,10 +17,11 @@ const Title = styled.h2`
 const HostInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
   padding: 20px;
   width: 100%;
-  max-width: 600px; /* 좌우 여백을 위해 최대 너비 설정 */
+  max-width: 400px; /* 좌우 여백을 위해 최대 너비 설정 */
   margin: 0 auto; /* 중앙 정렬 */
   font-family: ${fontFamily}; /* 폰트 적용 */
 `;
