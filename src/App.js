@@ -12,12 +12,12 @@ const VideoSection = styled.section`
 
 const Video = styled.video`
   width: 100%;
-  height: 100%;
-  object-fit: contain;  // 전체 화면을 채우도록 설정
+  height: auto;  /* 비율을 유지하면서 너비에 맞게 크기 조절 */
+  object-fit: cover;  /* 전체 화면을 채우도록 설정 */
 `;
 
 const ContentSection = styled.section`
-  padding: 20px;
+
   background-color: #f5f5f5;
 `;
 
