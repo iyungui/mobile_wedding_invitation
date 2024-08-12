@@ -1,5 +1,5 @@
 // InvitationContent.js
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Messages } from "./Messages";
@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import ScheduleAndLocation from "./ScheduleAndLocation";
 import RSVP from "./RSVP";
 import Gallery from "./Gallery";
+import OverlayComponent from "./OverlayComponent";
 
 const fontFamily = "'MaruBuri-regular', 'Noto Sans KR', sans-serif";
 
@@ -41,12 +42,16 @@ const messageVariants = {
 };
 
 const InvitationContent = () => {
+  const profileRef = useRef(null);
+
   return (
     <ContentContainer>
+      <OverlayComponent profileRef={profileRef} />
+
       <Section>
         <Messages />
       </Section>
-      <Section
+      <Section ref={profileRef}
         variants={messageVariants}
         initial="hidden"
         whileInView="visible"
