@@ -51,7 +51,7 @@ const ScheduleAndLocation = () => {
       <Location>서울특별시 강남구 학동로 519 (청담동 73-4번지) 빌라드지디 청담</Location>
       <Map />
       <KakaoButton
-        href="https://map.kakao.com/link/map/청담웨딩홀,37.523123,127.047417"
+        href="https://map.kakao.com/link/map/빌라드지디 청담,37.520159,127.055451"
         target="_blank"
         rel="noopener noreferrer"
       >

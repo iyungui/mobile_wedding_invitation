@@ -1,12 +1,9 @@
-import { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-// import ExpandMore from '@/assets/icons/expand_more.svg?react';
 
-interface IAccordionProps {
-  title: string;
-  children: ReactNode;
-}
-const Accordion = ({ title, children }: IAccordionProps) => {
+const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
+
+const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -17,12 +14,8 @@ const Accordion = ({ title, children }: IAccordionProps) => {
     <AccordionWrapper>
       <AccordionHeader isActive={isOpen} onClick={toggleAccordion}>
         <p>{title}</p>
-
-        {/* <span>
-          <ExpandMore fill="#e88ca6" />
-        </span> */}
+        <span>{isOpen ? '▲' : '▼'}</span>
       </AccordionHeader>
-
       {isOpen && <AccordionContent>{children}</AccordionContent>}
     </AccordionWrapper>
   );
@@ -31,31 +24,34 @@ const Accordion = ({ title, children }: IAccordionProps) => {
 export default Accordion;
 
 const AccordionWrapper = styled.div`
-  font-family: HSSanTokki20-Regular, serif;
+  font-family: ${fontFamily}; /* 폰트 적용 */
   border: 1px solid #e6ece1;
   margin-bottom: 20px;
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
+  width: 100%;
 `;
 
-const AccordionHeader = styled.div<{ isActive: boolean }>`
+const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #e6ece1;
   padding: 0 15px;
   cursor: pointer;
+
   & > p {
     color: #44484d;
+    margin: 0;
   }
+
   & > span {
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
     transition: all 0.3s ease;
-    transform: ${(props) => (props.isActive ? 'rotate(180deg)' : undefined)};
   }
 `;
 

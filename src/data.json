@@ -7,9 +7,7 @@
           "name": "장세모",
           "relation": "신랑",
           "bank": "카카오뱅크",
-          "account": "1234-56-789012",
-          "kakaopayAccount": "",
-          "tossAccount": ""
+          "account": "1234-56-789012"
         },
         {
           "name": "장아빠",
@@ -32,9 +30,7 @@
           "name": "황네모",
           "relation": "신부",
           "bank": "토스뱅크",
-          "account": "1234-5678-9012",
-          "kakaopayAccount": "",
-          "tossAccount": ""
+          "account": "1234-5678-9012"
         },
         {
           "name": "황아빠",
