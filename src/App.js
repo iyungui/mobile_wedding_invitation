@@ -5,7 +5,8 @@ import GlobalStyles from './styles/GlobalStyles';
 import InvitationContent from './components/InvitationContent';
 import headerVideo from './assests/headerVideo.MP4'; // 동영상 파일 import
 
-const VideoSection = styled.section`
+const VideoContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -13,9 +14,18 @@ const VideoSection = styled.section`
 
 const Video = styled.video`
   width: 100%;
-  height: auto%;
-  object-fit: cover;  // 전체 화면을 채우도록 설정
+  height: 100%;
+  object-fit: cover;
 `;
+
+const GradientOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;  /* 그라데이션의 높이를 조절할 수 있습니다 */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+`;
+
 
 const ContentSection = styled.section`
   width: 100%;
@@ -26,14 +36,15 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      <VideoSection>
-        <Video
-          src={headerVideo}
-          autoPlay
-          muted
-          playsInline
-        />
-      </VideoSection>
+      <VideoContainer>
+      <Video
+        src={headerVideo}
+        autoPlay
+        muted
+        playsInline
+      />
+      <GradientOverlay />
+    </VideoContainer>
       <ContentSection>
         <InvitationContent />
       </ContentSection>
