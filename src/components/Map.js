@@ -18,7 +18,7 @@ function Map() {
     marker.setMap(map);
 
     var iwContent =
-        '<div style="padding:5px;">청담웨딩홀</div>',
+        '<div style="padding:5px;">빌라드지디 청담</div>',
       iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
 
     // 인포윈도우를 생성합니다
