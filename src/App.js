@@ -1,11 +1,23 @@
-// App.js
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import GlobalStyles from './styles/GlobalStyles';
 import InvitationContent from './components/InvitationContent';
-import headerVideo from './assests/headerVideo.MP4'; // 동영상 파일 import
-import backgroundMusic from './assests/backgroundMusic.mp3'; // 음악 파일 import
+import headerVideo from './assests/headerVideo.MP4';
+import backgroundMusic from './assests/backgroundMusic.mp3';
 
+
+const MusicControl = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #1A5319;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+`;
 
 const VideoContainer = styled.div`
   position: relative;
@@ -59,22 +71,43 @@ const StartButton = styled.button`
 `;
 
 const App = () => {
-  const [audio, setAudio] = useState(null);
   const [started, setStarted] = useState(false);
+  const [backgroundMusicPlaying, setBackgroundMusicPlaying] = useState(false);
+  const audioRef = useRef(new Audio(backgroundMusic));
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.loop = true; // 음악 반복 재생
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   const handleStart = () => {
-    const audioInstance = new Audio(backgroundMusic);
-    audioInstance.play().catch(error => {
+    audioRef.current.play().catch(error => {
       console.log("음악 재생 실패:", error);
     });
-    setAudio(audioInstance);
+    setBackgroundMusicPlaying(true);
     setStarted(true);
   };
 
   const handleStartWithoutMusic = () => {
     setStarted(true);
   };
-  
+
+  const toggleMusic = () => {
+    if (backgroundMusicPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(error => {
+        console.log("음악 재생 실패:", error);
+      });
+    }
+    setBackgroundMusicPlaying(!backgroundMusicPlaying);
+  };
+
   return (
     <>
       <GlobalStyles />
@@ -82,21 +115,25 @@ const App = () => {
         <Overlay>
           <StartButton onClick={handleStart}>음악과 함께 시작하기</StartButton>
           <StartButton onClick={handleStartWithoutMusic}>음악 없이 시작하기</StartButton>
-
         </Overlay>
       )}
       <VideoContainer>
-      <Video
-        src={headerVideo}
-        autoPlay
-        muted
-        playsInline
-      />
-      <GradientOverlay />
-    </VideoContainer>
+        <Video
+          src={headerVideo}
+          autoPlay
+          muted
+          playsInline
+        />
+        <GradientOverlay />
+      </VideoContainer>
       <ContentSection>
         <InvitationContent />
       </ContentSection>
+      {started && (
+        <MusicControl onClick={toggleMusic}>
+          {backgroundMusicPlaying ? '음악 끄기' : '음악 켜기'}
+        </MusicControl>
+      )}
     </>
   );
 };

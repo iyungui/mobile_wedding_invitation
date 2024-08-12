@@ -1,6 +1,3 @@
-
-// AccountWrap.js
-
 import React from 'react';
 import styled from 'styled-components';
 import copyButtonImage from './copyButton.png';
@@ -48,6 +45,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 `;
 
 const Info = styled.div`
@@ -55,6 +54,7 @@ const Info = styled.div`
   align-items: flex-start;
   gap: 5px;
   margin: 5px 0;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
 `;
 
 const Relation = styled.span`
@@ -69,12 +69,14 @@ const Details = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 `;
 
 const AccountInfo = styled.div`
   flex: 1;
   text-align: left;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
 `;
 
 const CopyButton = styled.button`

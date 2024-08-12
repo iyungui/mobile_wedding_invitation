@@ -1,5 +1,3 @@
-// Account.js
-
 import React from "react";
 import styled from 'styled-components';
 import data from "../../data.json";
@@ -19,9 +17,10 @@ const HostInfoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
-  width: 100%;
-  max-width: 400px; 
-  margin: 0 auto; 
+  width: 100%; 
+  max-width: 100%; /* 최대 너비를 부모 컨테이너의 100%로 설정 */
+  margin: 0 auto;
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 `;
 
 const Account = () => {

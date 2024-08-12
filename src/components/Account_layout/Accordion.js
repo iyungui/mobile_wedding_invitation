@@ -1,6 +1,3 @@
-
-// Accordion.js
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -30,7 +27,8 @@ const AccordionWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  width: 100%; /* 부모 컨테이너를 초과하지 않도록 설정 */
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 `;
 
 const AccordionHeader = styled.div`
@@ -40,10 +38,13 @@ const AccordionHeader = styled.div`
   background-color: #e6ece1;
   padding: 0 15px;
   cursor: pointer;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 
   & > p {
     color: #44484d;
     margin: 0;
+    flex: 1; /* p 요소가 가능한 너비를 차지하도록 설정 */
   }
 
   & > span {
@@ -60,4 +61,6 @@ const AccordionContent = styled.div`
   text-align: justify;
   padding: 10px 20px;
   background-color: #ffffff;
+  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  box-sizing: border-box; /* padding 포함한 width 계산 */
 `;
