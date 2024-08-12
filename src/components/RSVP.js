@@ -150,7 +150,7 @@ const RSVP = () => {
           setResponseMessage('');
           
           try {
-            const response = await axios.post("http://localhost:5000/api/rsvp", formData);
+            const response = await axios.post("https://port-0-wedding-invitation-server-lzqmqzk6f911bb61.sel4.cloudtype.app/api/rsvp", formData);
             console.log("폼 제출 성공: ", response.data);
             setResponseMessage('참석 여부가 성공적으로 전달되었습니다.');
             // 폼 제출 성공 후, 폼 초기화

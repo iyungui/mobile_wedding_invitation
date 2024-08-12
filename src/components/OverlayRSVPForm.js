@@ -192,7 +192,7 @@ const OverlayRSVPForm = ({ onClose }) => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/rsvp",
+          "https://port-0-wedding-invitation-server-lzqmqzk6f911bb61.sel4.cloudtype.app/api/rsvp",
           formData
         );
         console.log("폼 제출 성공: ", response.data);
