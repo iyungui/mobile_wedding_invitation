@@ -1,3 +1,4 @@
+// Profile.js
 import React from 'react';
 import styled from 'styled-components';
 
@@ -6,8 +7,8 @@ const ProfileContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  margin: 20px 0;
-  max-width: 900px;
+  margin: 20px auto;  /* 컨테이너를 중앙에 배치 */
+  max-width: 400px;  /* 최대 폭을 조정 */
   width: 100%;
   @media (max-width: 768px) {
     flex-direction: column;
@@ -16,7 +17,7 @@ const ProfileContainer = styled.div`
 `;
 
 const ProfileItem = styled.div`
-  margin: 0 0px;
+  margin: 0 10px;
   text-align: center;
   max-width: 250px;
   width: 100%;
@@ -48,6 +49,7 @@ const GroomThinText = styled.span`
   font-size: 11px;
   padding-right: 8px;
 `;
+
 const BrideThinText = styled.span`
   color: #E3A5C7;
   font-size: 11px;

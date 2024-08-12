@@ -14,11 +14,13 @@ const ContentContainer = styled.div`
   padding: 20px;
   text-align: center;
   line-height: 2;
+  width:100%;
   font-family: ${fontFamily};
 `;
 
 const Section = styled(motion.div)`
   padding: 40px 0; // 상하 20px 패딩
+  text-align: center;
 `;
 
 const InvitationContent = () => {
