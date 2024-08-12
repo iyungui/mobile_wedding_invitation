@@ -5,6 +5,7 @@ import Profile from './Profile';
 import ScheduleAndLocation from './ScheduleAndLocation';
 import RSVP from './RSVP';
 import Account from './Account_layout/Account';
+import Gallery from './Gallery';
 
 // 폰트 적용 (예: Google Fonts 사용)
 const fontFamily = "'Noto Sans KR', sans-serif, CustomFont";
@@ -37,6 +38,9 @@ const InvitationContent = () => {
       </Section>
       <Section>
         <Account />
+      </Section>
+      <Section>
+        <Gallery />
       </Section>
     </ContentContainer>
   );

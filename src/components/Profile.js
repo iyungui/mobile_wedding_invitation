@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import groom from '../assests/photos/IMG_5461.JPG';
-import bride from '../assests/photos/IMG_5460.JPG';
 
 
 const ProfileContainer = styled.div`
@@ -39,12 +37,12 @@ const Profile = () => {
   return (
     <ProfileContainer>
       <ProfileItem>
-        <ProfileImage src={groom} alt="Groom" />
+        <ProfileImage src="/photos/IMG_5461.JPG" alt="Groom" />
         <ProfileName>류인창</ProfileName>
         <ProfileDescription>신랑 소개</ProfileDescription>
       </ProfileItem>
       <ProfileItem>
-        <ProfileImage src={bride} alt="Bride" />
+        <ProfileImage src="/photos/IMG_5460.JPG" alt="Bride" />
         <ProfileName>이에스더</ProfileName>
         <ProfileDescription>신부 소개</ProfileDescription>
       </ProfileItem>
