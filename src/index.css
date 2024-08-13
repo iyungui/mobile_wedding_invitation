@@ -38,3 +38,19 @@ code {
   font-family: 'Pretendard';
   src: url('./assests//fonts/PretendardVariable.ttf');
 }
+
+
+
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('./assests//fonts/Cafe24Oneprettynight-v2.0.woff2');
+}
+@font-face {
+  font-family: 'GowunBatang-Bold';
+  src: url('./assests//fonts/GowunBatang-Bold.ttf');
+}
+@font-face {
+  font-family: 'GowunBatang-Regular';
+  src: url('./assests//fonts/GowunBatang-Regular.ttf');
+}
+

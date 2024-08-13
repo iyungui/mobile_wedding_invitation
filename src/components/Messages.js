@@ -1,73 +1,68 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const MessageContainer = styled.div`
   padding: 10px;
 `;
 
-const Message1 = styled(motion.p)`
-  font-size: 13px;
-  font-family: 'MaruBuri-extraLight';
-  margin-bottom: 100px;
-`;
-
-const Highlight = styled.span`
-  font-size: 13px;
-  font-family: 'MaruBuri-light';
-`;
-
 const Message3 = styled(motion.p)`
   font-size: 14px;
-  font-family: 'MaruBuri-regular';
-  margin-bottom: 150px;
+  font-family: "MaruBuri-regular";
+  color: #303030;
+  margin-top: 100px;
+  margin-bottom: 140px;
 `;
 
-const Message4 = styled(motion.p)`
-  color: #111111;
+const Name = styled(motion.p)`
+  color: #303030;
+  font-family: "MaruBuri-regular";
   font-size: 16px;
-  font-weight: 550;
-  margin-bottom: 20px;
+  margin-top: 100px;
+`;
+
+const HighLight = styled.span`
+  color: #272727;
+  font-family: "MaruBuri-semibold";
+`;
+
+
+const PlaceName = styled(motion.p)`
+  color: #303030;
+  font-size: 15px;
+  font-family: "MaruBuri-semibold";
+  margin-bottom: 150px;
 `;
 
 const PlaceImage = styled(motion.img)`
-  width: 30%;
+  width: 40%;
   height: auto;
   object-fit: cover;
-  margin-bottom: 150px;
+  margin-bottom: 20px;
 `;
 
-
 const messageVariants = {
-  hidden: { opacity: 0, y: 40 },  // 아래에 위치하고 투명
+  hidden: { opacity: 0, y: 100 }, // 아래에 위치하고 투명
   visible: {
     opacity: 1,
-    y: 0,  // 제자리로 이동
-    transition: { duration: 0.8, ease: 'easeOut' }
-  }
+    y: 0, // 제자리로 이동
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
 };
 
 export const Messages = () => (
   <MessageContainer>
-    <Message1
+        <Name
       variants={messageVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      어떤 특별한 사람은 행성 하나보다
+      <HighLight>류성철·주연희</HighLight>의 차남 <HighLight>류인창</HighLight>
       <br />
-      더 큰 의미를 가질 때가 있어요.
-      <br />
-      <br />
-      그걸 이해하는 사람이 있고
-      못하는 사람이 있겠지만,
-      <br />
-      저한텐 엄청 분명한 문제에요.
-      <br />
-      <br />
-      <Highlight>&lt;지구에서 한아뿐&gt;, 정세랑 지음</Highlight>
-    </Message1>
+      <HighLight>임정임</HighLight>의 장녀 <HighLight>이에스더</HighLight>
+    </Name>
+
 
 
     <Message3
@@ -76,6 +71,7 @@ export const Messages = () => (
       whileInView="visible"
       viewport={{ once: true }}
     >
+
       함께 있을 때,
       <br />
       서로를 더 빛나게 해주는 사람을 만났습니다
@@ -93,33 +89,40 @@ export const Messages = () => (
       <br />
       설레는 첫걸음을 함께 빛내주세요
     </Message3>
-    <Message4
+
+    <PlaceImage
+      src="/photos/wedding_hole_logo.png"
+      alt="logo"
+      variants={messageVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    />
+
+    <PlaceName
       variants={messageVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      류성철·주연희의 차남 류인창
-      <br />
-      임정임의 장녀 이에스더
-      <br />
-      2024.09.22 일요일 11:30 빌라드지디 청담
-    </Message4>
-    <PlaceImage
-      src='/photos/wedding_hole_logo.png'
-      alt='logo'
-      variants={messageVariants}  // 동일한 애니메이션 적용
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    />
+      2024년 9월 22일 일요일 오전 11시 30분
+      <br/>
+      빌라드지디 청담
+    </PlaceName>
+
   </MessageContainer>
 );
 
 
+
 /*
-어떤 특별한 사람은 행성 하나보다
-더 큰 의미를 가질 때가 있어요. 
-그걸 이해하는 사람이 있고 못하는 사람이 있겠지만, 저한텐 엄청 분명한 문제에요.
-<지구에서 한아뿐>, 정세랑 지음
-*/
+
+    <PlaceImage
+      src="/photos/wedding_hole_logo.png"
+      alt="logo"
+      variants={messageVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    />
+    */
