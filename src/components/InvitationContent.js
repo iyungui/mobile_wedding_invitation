@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Messages } from "./Messages";
 import Profile from "./Profile";
+import Calendar from "./Calendar";
 import ScheduleAndLocation from "./ScheduleAndLocation";
 import RSVP from "./RSVP";
 import Gallery from "./Gallery";
@@ -35,14 +36,14 @@ const Section = styled(motion.div)`
 const Title = styled.h2`
   font-size: 20px;
   font-family: "MaruBuri-extralight";
-  color: #ffb76f;
+  color: #575757;
   margin-top: 0;
 `;
 
 const SubTitle = styled.h3`
   font-size: 11px;
   font-family: "MaruBuri-extralight";
-  color: #ffb76f;
+  color: #575757;
 
   letter-spacing: 0.2rem;
   margin-bottom: 0;
@@ -53,7 +54,7 @@ const messageVariants = {
   visible: {
     opacity: 1,
     y: 0, // 제자리로 이동
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5 },
   },
 };
 
@@ -79,6 +80,14 @@ const InvitationContent = () => {
         <Profile />
       </Section>
 
+      <Section
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+      >
+        <Calendar />
+      </Section>
       <Section
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -123,11 +132,22 @@ const InvitationContent = () => {
         <Gallery />
       </Section>
 
-      <Section>
+      <Section
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <Notice />
       </Section>
 
-      <Section>
+
+      <Section
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <Vegetarian />
       </Section>
 

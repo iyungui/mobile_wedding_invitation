@@ -30,7 +30,7 @@ const HighLight = styled.span`
 const PlaceName = styled(motion.p)`
   color: #303030;
   font-size: 15px;
-  font-family: "MaruBuri-semibold";
+  font-family: "MaruBuri-regular";
   margin-bottom: 150px;
 `;
 
@@ -107,22 +107,10 @@ export const Messages = () => (
     >
       2024년 9월 22일 일요일 오전 11시 30분
       <br/>
-      빌라드지디 청담
+      <HighLight>빌라드지디 청담</HighLight>
     </PlaceName>
 
   </MessageContainer>
 );
 
 
-
-/*
-
-    <PlaceImage
-      src="/photos/wedding_hole_logo.png"
-      alt="logo"
-      variants={messageVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    />
-    */
