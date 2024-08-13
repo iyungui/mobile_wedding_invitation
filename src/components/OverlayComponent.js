@@ -97,13 +97,12 @@ const ActionButton = styled.button`
   background-color: pink;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
 `;
-
 
 const OverlayComponent = ({ profileRef, onClose }) => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -151,9 +150,13 @@ const OverlayComponent = ({ profileRef, onClose }) => {
                 <Message>
                   소중한 시간을 내어 결혼식에 <br /> 참석해주시는 모든 분들께
                   감사드립니다.
+                  <br /><br />
+                  예식에 참석하시는 모든 분들을
                   <br />
-                  예식이 지정좌석제로 진행되오니, <br /> 참석 여부를 회신해
-                  주시면 <br />
+                  더욱 귀하게 모실 수 있도록
+                  <br />
+                  참석 여부를 회신해 주시면
+                  <br />
                   더욱 감사하겠습니다.
                 </Message>
                 <Divider />
@@ -162,7 +165,7 @@ const OverlayComponent = ({ profileRef, onClose }) => {
                     <Groom>신랑</Groom> <Name>류인창</Name> |{" "}
                     <Bride>신부</Bride> <Name>이에스더</Name>
                   </Names>
-                  <DateTime>2024년 09월 22일 토요일 오전 11시 30분</DateTime>
+                  <DateTime>2024년 09월 22일 일요일 오전 11시 30분</DateTime>
                 </EventDetails>
                 <ActionButton onClick={handleShowRSVPForm}>
                   참석 여부 전달하기

@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'MaruBuri-regular, sans-serif';
+    font-family: 'Pretendard, sans-serif';
   }
 
   /* 모바일 대응을 위한 설정 */

@@ -5,7 +5,7 @@ import AccountWrap from './AccountWrap';
 import Accordion from './Accordion';
 
 const Title = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;

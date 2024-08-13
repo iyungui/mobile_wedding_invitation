@@ -41,13 +41,14 @@ const SelectButton = styled.button`
   font-size: 14px;
   font-weight: ${props => (props.selected ? '700' : '400')};
   background-color: #fff;  /* 배경색을 모두 흰색으로 설정 */
-  color: ${props => (props.selected ? '#1A5319' : '#000000')};  /* 선택 시 텍스트 색상을 #1A5319로 변경 */
-  border: ${props => (props.selected ? '2px' : '1.5px')} solid ${props => (props.selected ? '#1A5319' : '#c8c8c8')};  /* 선택된 경우 두꺼운 #1A5319 border */
+  color: ${props => (props.selected ? '#FF4E88' : '#000000')};  /* 선택 시 텍스트 색상을 #1A5319로 변경 */
+  border: ${props => (props.selected ? '2px' : '1.5px')} solid ${props => (props.selected ? '#FF4E88' : '#c8c8c8')};  /* 선택된 경우 두꺼운 #1A5319 border */
   margin-right: ${props => (props.marginRight ? '10px' : '0')};
   cursor: pointer;
 
   &:hover {
-    border-color: #1A5319;  /* 호버 시 border 색상을 #1A5319로 변경 */
+    border-color: #FF4E88;  /* 호버 시 border 색상을 #1A5319로 변경 */
+    color: #FF4E88
   }
 
   &:focus {
@@ -78,22 +79,19 @@ const SuccessMessage = styled.p`
 `;
 
 const SubmitButton = styled.button`
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: #1A5319;
+  padding: 10px 20px;
+  background-color: pink;
   color: white;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
-
-  &:hover {
-    background-color: #1A5319;
-  }
-
-  &:focus {
-    outline: none;
-  }
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 `;
 
 const LoadingMessage = styled.p`

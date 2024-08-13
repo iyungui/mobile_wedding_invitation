@@ -10,8 +10,9 @@ import Gallery from "./Gallery";
 import OverlayComponent from "./OverlayComponent";
 import Account from "./Account_layout/Account";
 import Footer from "./Footer";
+import Notice from "./Notice";
 
-const fontFamily = "'MaruBuri-regular', 'Noto Sans KR', sans-serif";
+const fontFamily = "'Pretendard', 'Noto Sans KR', sans-serif";
 
 const ContentContainer = styled.div`
   padding: 10px;
@@ -53,7 +54,8 @@ const InvitationContent = () => {
       <Section>
         <Messages />
       </Section>
-      <Section ref={profileRef}
+      <Section
+        ref={profileRef}
         variants={messageVariants}
         initial="hidden"
         whileInView="visible"
@@ -88,7 +90,7 @@ const InvitationContent = () => {
       >
         <Account />
       </Section>
-      
+
       <Section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -96,6 +98,10 @@ const InvitationContent = () => {
         transition={{ duration: 0.5 }}
       >
         <Gallery />
+      </Section>
+
+      <Section>
+        <Notice />
       </Section>
 
       <Section>

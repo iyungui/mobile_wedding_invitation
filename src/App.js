@@ -28,13 +28,13 @@ const GradientOverlay = styled.div`
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 0%,
-    #f5f5f5 100%
+    #ffffff 100%
   );
 `;
 
 const ContentSection = styled.section`
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 `;
 
 const AudioIconWrapper = styled.div`

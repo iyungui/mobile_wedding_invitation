@@ -31,8 +31,7 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileName = styled.h3`
-  font-size: 18px;
-  font-family: 'MaruBuri-Bold';
+  font-size: 17px;
   margin-bottom: 5px;
 `;
 
@@ -42,26 +41,24 @@ const ProfileDescription = styled.p`
 `;
 
 const GroomThinText = styled.span`
-  color: #000000;
-  font-family: 'MaruBuri-extraLight';
-  font-size: 11px;
+  color: #7FA1C3;
+  font-size: 16px;
   padding-right: 8px;
 `;
 
 const BrideThinText = styled.span`
-  color: #000000;
-  font-family: 'MaruBuri-extraLight';
-  font-size: 11px;
+  color: #D9ABAB;
+  font-size: 16px;
   padding-right: 8px;
 `;
 
 const Highlight = styled.span`
-  color: #1A5319; 
+  color: #3C3D37; 
 `;
 
 const HighLightWithBackground = styled.span`
-  background-color: #E7F0DC; /* 그린 배경색 */
-  border-radius: 4px; /* 모서리를 둥글게 */
+  background-color: #fff9c2;
+  border-radius: 4px;
 `;
 
 const Profile = () => {
@@ -79,7 +76,9 @@ const Profile = () => {
           <br/>
           다정한 팩폭러
           <br/>
-          나무같은 남편이 되겠습니다 🌳
+          🌳
+          <br />
+          나무같은 남편이 되겠습니다
         </ProfileDescription>
       </ProfileItem>
       <ProfileItem>
@@ -94,7 +93,9 @@ const Profile = () => {
           <br/>
           꼼꼼한 칠칠이
           <br/>
-          햇살같은 아내가 되겠습니다 ☀️
+          ☀️
+          <br />
+          햇살같은 아내가 되겠습니다
         </ProfileDescription>
       </ProfileItem>
     </ProfileContainer>

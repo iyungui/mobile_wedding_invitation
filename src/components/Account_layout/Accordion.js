@@ -12,7 +12,7 @@ const Accordion = ({ title, children }) => {
     <AccordionWrapper>
       <AccordionHeader isActive={isOpen} onClick={toggleAccordion}>
         <p>{title}</p>
-        <span>{isOpen ? '▲' : '▼'}</span>
+        <OpenSpan>{isOpen ? '▲' : '▼'}</OpenSpan>
       </AccordionHeader>
       {isOpen && <AccordionContent>{children}</AccordionContent>}
     </AccordionWrapper>
@@ -20,6 +20,10 @@ const Accordion = ({ title, children }) => {
 };
 
 export default Accordion;
+
+const OpenSpan = styled.span`
+  color: #44484d;
+`;
 
 const AccordionWrapper = styled.div`
   border: 1px solid #e6ece1;
@@ -35,7 +39,7 @@ const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #e6ece1;
+  background-color: #ffeaed;
   padding: 0 15px;
   cursor: pointer;
   width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */

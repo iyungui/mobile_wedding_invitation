@@ -6,12 +6,12 @@ function Map() {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new kakao.maps.LatLng(37.52018, 127.055457),
       level: 3,
     };
 
     const map = new kakao.maps.Map(container, options);
-    var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+    var markerPosition = new kakao.maps.LatLng(37.52018, 127.055457);
     var marker = new kakao.maps.Marker({
       position: markerPosition,
     });
@@ -19,7 +19,7 @@ function Map() {
 
     var iwContent =
         '<div style="padding:5px;">빌라드지디 청담</div>',
-      iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+      iwPosition = new kakao.maps.LatLng(37.52018, 127.055457);
 
     // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({

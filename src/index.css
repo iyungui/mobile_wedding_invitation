@@ -33,3 +33,8 @@ code {
   font-family: 'MaruBuri-bold';
   src: url('./assests/fonts/MaruBuri-Bold.ttf');
 }
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./assests//fonts/PretendardVariable.ttf');
+}

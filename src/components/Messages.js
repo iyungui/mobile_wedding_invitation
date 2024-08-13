@@ -9,13 +9,12 @@ const MessageContainer = styled.div`
 const Message1 = styled(motion.p)`
   font-size: 13px;
   font-family: 'MaruBuri-extraLight';
-  margin-bottom: 60px; /* 메시지 간 상하 여유 공간 */
+  margin-bottom: 100px;
 `;
 
-const Message2 = styled(motion.p)`
+const Highlight = styled.span`
   font-size: 13px;
   font-family: 'MaruBuri-light';
-  margin-bottom: 100px;
 `;
 
 const Message3 = styled(motion.p)`
@@ -25,13 +24,14 @@ const Message3 = styled(motion.p)`
 `;
 
 const Message4 = styled(motion.p)`
-  font-size: 17px;
-  font-family: 'MaruBuri-semibold';
-  margin-bottom: 60px;
+  color: #111111;
+  font-size: 16px;
+  font-weight: 550;
+  margin-bottom: 20px;
 `;
 
 const PlaceImage = styled(motion.img)`
-  width: 100%;
+  width: 30%;
   height: auto;
   object-fit: cover;
   margin-bottom: 150px;
@@ -55,31 +55,34 @@ export const Messages = () => (
       whileInView="visible"
       viewport={{ once: true }}
     >
-      You can not be happy every day.
+      어떤 특별한 사람은 행성 하나보다
       <br />
-      But there are happy things every day.
+      더 큰 의미를 가질 때가 있어요.
+      <br />
+      <br />
+      그걸 이해하는 사람이 있고
+      못하는 사람이 있겠지만,
+      <br />
+      저한텐 엄청 분명한 문제에요.
+      <br />
+      <br />
+      <Highlight>&lt;지구에서 한아뿐&gt;, 정세랑 지음</Highlight>
     </Message1>
-    <Message2
-      variants={messageVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      매일 행복할 순 없지만,
-      <br />
-      행복한 것들은 매일 있어.
-      <br />
-      &lt;월트 디즈니&gt;, 곰돌이 푸
-    </Message2>
+
+
     <Message3
       variants={messageVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      함께 있을 때, 서로를 더 빛나게 해주는 사람을 만났습니다
+      함께 있을 때,
       <br />
-      두 개의 빛이 하나가 되어 평생을 더욱이 밝혀보려 합니다
+      서로를 더 빛나게 해주는 사람을 만났습니다
+      <br />
+      두 개의 빛이 하나가 되어
+      <br />
+      평생을 더욱이 밝혀보려 합니다
       <br />
       <br />
       어떤 가을은 더 낭만적이에요
@@ -102,6 +105,21 @@ export const Messages = () => (
       <br />
       2024.09.22 일요일 11:30 빌라드지디 청담
     </Message4>
-    <PlaceImage src='/photos/wedding_hole_logo.png' alt='logo' />
+    <PlaceImage
+      src='/photos/wedding_hole_logo.png'
+      alt='logo'
+      variants={messageVariants}  // 동일한 애니메이션 적용
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    />
   </MessageContainer>
 );
+
+
+/*
+어떤 특별한 사람은 행성 하나보다
+더 큰 의미를 가질 때가 있어요. 
+그걸 이해하는 사람이 있고 못하는 사람이 있겠지만, 저한텐 엄청 분명한 문제에요.
+<지구에서 한아뿐>, 정세랑 지음
+*/

@@ -78,15 +78,15 @@ const SelectButton = styled.button`
   font-size: 12px;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
   background-color: #fff;
-  color: ${(props) => (props.selected ? "#1A5319" : "#000000")};
+  color: ${(props) => (props.selected ? "#FF4E88" : "#000000")};
   border: ${(props) => (props.selected ? "2px" : "1.5px")} solid
-    ${(props) => (props.selected ? "#1A5319" : "#c8c8c8")};
+    ${(props) => (props.selected ? "#FF4E88" : "#c8c8c8")};
   margin-right: ${(props) => (props.marginRight ? "8px" : "0")};
   cursor: pointer;
-  border-radius: 5px;
 
   &:hover {
-    border-color: #1a5319;
+    border-color: #FF4E88;
+    color: #FF4E88
   }
 
   &:focus {
@@ -99,7 +99,6 @@ const Input = styled.input`
   font-size: 12px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
 `;
 
 const ErrorMessage = styled.p`
@@ -117,23 +116,19 @@ const SuccessMessage = styled.p`
 `;
 
 const SubmitButton = styled.button`
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #1a5319;
+  padding: 10px 20px;
+  background-color: pink;
   color: white;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 8px;
-  margin-top: 15px;
-
-  &:hover {
-    background-color: #145214;
-  }
-
-  &:focus {
-    outline: none;
-  }
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 `;
 
 const LoadingMessage = styled.p`
