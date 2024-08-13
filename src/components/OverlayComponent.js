@@ -24,10 +24,6 @@ const CloseIcon = styled.button`
   font-size: 40px;
   color: rgba(128, 128, 128, 0.7);
   cursor: pointer;
-
-  &:hover {
-    color: rgba(128, 128, 128, 1);
-  }
 `;
 
 const OverlayContent = styled.div`
@@ -94,7 +90,7 @@ const DateTime = styled.div`
 
 const ActionButton = styled.button`
   padding: 10px 20px;
-  background-color: pink;
+  background-color: #ffb76f;
   color: white;
   border: none;
   border-radius: 4px;

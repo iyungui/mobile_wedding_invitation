@@ -169,16 +169,6 @@ const Notice = () => {
         -신랑 신부 올림-
       </CenteredContent>
 
-      <CenteredContent
-        variants={messageVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        식사에 훈연 해산물 및 육류가 포함됩니다.<br />채식을 하시는 분들은 따로 음식을 마련해드리오니,<br />
-        꼭 체크 부탁드립니다.
-      </CenteredContent>
-
     </NoticeContainer>
   );
 };

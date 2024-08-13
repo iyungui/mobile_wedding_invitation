@@ -49,8 +49,8 @@ const CloseButton = styled.button`
 `;
 
 const Title = styled.h2`
-  font-size: 18px;
-  font-weight: 700;
+  font-family: "MaruBuri-extralight";
+  font-size: 17px;
   margin-bottom: 15px;
   text-align: center;
 `;
@@ -61,9 +61,10 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
+  font-family: "MaruBuri-regular";
+  color: #303030;
   margin-bottom: 5px;
   font-size: 12px;
-  font-weight: 600;
 `;
 
 const ButtonGroup = styled.div`
@@ -74,31 +75,21 @@ const ButtonGroup = styled.div`
 
 const SelectButton = styled.button`
   flex: 1;
-  padding: 8px;
+  padding: 10px;
+  font-family: ${props => (props.selected ? "MaruBuri-SemiBold" : "MaruBuri-regular")};
   font-size: 12px;
-  font-weight: ${(props) => (props.selected ? "700" : "400")};
   background-color: #fff;
-  color: ${(props) => (props.selected ? "#FF4E88" : "#000000")};
-  border: ${(props) => (props.selected ? "2px" : "1.5px")} solid
-    ${(props) => (props.selected ? "#FF4E88" : "#c8c8c8")};
-  margin-right: ${(props) => (props.marginRight ? "8px" : "0")};
+  color: ${props => (props.selected ? '#ffb76f' : '#303030')};
+  border: 1px solid ${props => (props.selected ? '#ffb76f' : '#e0e0e0')};
+  margin-right: ${props => (props.marginRight ? '10px' : '0')};
   cursor: pointer;
-
-  &:hover {
-    border-color: #FF4E88;
-    color: #FF4E88
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Input = styled.input`
-  padding: 8px;
+  padding: 10px;
   font-size: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
 `;
 
 const ErrorMessage = styled.p`
@@ -116,21 +107,20 @@ const SuccessMessage = styled.p`
 `;
 
 const SubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: pink;
+  padding: 8px 0;
+  background-color: #ffb76f;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  width: 50%;
+  font-size: 13px;
+  margin-top: 10px;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  font-family: 'MaruBuri-extralight', 'Noto Sans KR', sans-serif; 
 `;
-
 const LoadingMessage = styled.p`
   color: #1a5319;
   font-size: 14px;

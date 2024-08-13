@@ -3,18 +3,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const RSVPContainer = styled.div`
-  margin: 40px 0;
   text-align: left;
   display: inline-block;
-  width: 90%;
+  width: 80%;
   max-width: 400px;
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-bottom: 100px;
 `;
 
 const Form = styled.form`
@@ -23,9 +16,10 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
+  font-family: "MaruBuri-regular";
+  color: #303030;
   margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
 `;
 
 const ButtonGroup = styled.div`
@@ -38,30 +32,21 @@ const ButtonGroup = styled.div`
 const SelectButton = styled.button`
   flex: 1;
   padding: 10px;
-  font-size: 14px;
-  font-weight: ${props => (props.selected ? '700' : '400')};
-  background-color: #fff;  /* 배경색을 모두 흰색으로 설정 */
-  color: ${props => (props.selected ? '#FF4E88' : '#000000')};  /* 선택 시 텍스트 색상을 #1A5319로 변경 */
-  border: ${props => (props.selected ? '2px' : '1.5px')} solid ${props => (props.selected ? '#FF4E88' : '#c8c8c8')};  /* 선택된 경우 두꺼운 #1A5319 border */
+  font-family: ${props => (props.selected ? "MaruBuri-SemiBold" : "MaruBuri-regular")};
+  font-size: 12px;
+  background-color: #fff;
+  color: ${props => (props.selected ? '#ffb76f' : '#303030')};
+  border: 1px solid ${props => (props.selected ? '#ffb76f' : '#e0e0e0')};
   margin-right: ${props => (props.marginRight ? '10px' : '0')};
   cursor: pointer;
-
-  &:hover {
-    border-color: #FF4E88;  /* 호버 시 border 색상을 #1A5319로 변경 */
-    color: #FF4E88
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 
 const Input = styled.input`
   padding: 10px;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
 `;
 
 const ErrorMessage = styled.p`
@@ -79,19 +64,19 @@ const SuccessMessage = styled.p`
 `;
 
 const SubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: pink;
+  padding: 8px 0;
+  background-color: #ffb76f;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
   margin-top: 10px;
-  width: 50%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  font-family: 'MaruBuri-extralight', 'Noto Sans KR', sans-serif; 
 `;
 
 const LoadingMessage = styled.p`
@@ -172,7 +157,6 @@ const RSVP = () => {
       };
     return (
       <RSVPContainer>
-        <Title>참석 여부 전달하기</Title>
         <Form onSubmit={handleSubmit}>
           <ButtonGroup>
             <SelectButton
@@ -259,12 +243,12 @@ const RSVP = () => {
               selected={formData.meal === 'no'}
               onClick={() => handleButtonClick('meal', 'no')}
             >
-              식사 불가(답례품 수령)
+              식사 불가<br/>(답례품 수령)
             </SelectButton>
           </ButtonGroup>
   
           <SubmitButton type="submit" disabled={isLoading}>
-          {isLoading ? '제출 중...' : '참석 여부 전달하기'}
+          {isLoading ? '제출 중...' : '참석 여부 전달'}
         </SubmitButton>
       </Form>
       {isLoading && <LoadingMessage>제출 중입니다...</LoadingMessage>}

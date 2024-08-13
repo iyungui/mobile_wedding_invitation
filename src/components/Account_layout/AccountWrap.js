@@ -7,6 +7,7 @@ const AccountWrap = ({
   relation,
   bank,
   account,
+  phone
 }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(`${bank} ${account} ${name}`).then(
@@ -30,9 +31,10 @@ const AccountWrap = ({
           {bank} {account}
         </AccountInfo>
         <CopyButton onClick={handleCopy}>
-          {<img src={copyButtonImage} alt="Copy" width="40" height="40" />}
+          <img src={copyButtonImage} alt="Copy" width="32" height="32" />
         </CopyButton>
       </Details>
+      <PhoneNumber href={`tel:${phone}`}>{phone}</PhoneNumber> {/* Clickable phone number */}
     </Wrapper>
   );
 };
@@ -40,49 +42,68 @@ const AccountWrap = ({
 export default AccountWrap;
 
 const Wrapper = styled.div`
-  padding: 10px 0;
-  border-bottom: 1px solid #dfdfdf;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
-  box-sizing: border-box; /* padding 포함한 width 계산 */
+  width: 100%;
 `;
 
 const Info = styled.div`
   display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  margin: 5px 0;
-  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
 `;
 
 const Relation = styled.span`
-  color: #44484d;
+  color: #777;
 `;
 
 const Name = styled.span`
-  font-size: 1rem;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 const Details = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
-  box-sizing: border-box; /* padding 포함한 width 계산 */
+  width: 100%;
 `;
 
 const AccountInfo = styled.div`
   flex: 1;
+  color: #444;
   text-align: left;
-  width: 100%; /* 부모 컨테이너의 너비를 초과하지 않도록 설정 */
+`;
+
+const PhoneNumber = styled.a`
+  color: #888;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: left;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline; /* Optional: Underline on hover for a clearer indication that it’s clickable */
+    color: #555; /* Optional: Darken color on hover */
+  }
 `;
 
 const CopyButton = styled.button`
   border: none;
-  border-radius: 5px;
-  padding: 0.1em 0.2em;
+  background: transparent;
   cursor: pointer;
-  background: white;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  & > img {
+    width: 32px;
+    height: 32px;
+  }
 `;

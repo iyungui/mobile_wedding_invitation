@@ -2,14 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const GalleryWrapper = styled.div`
-  padding: 20px 0;
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
+  padding: 0px 0;
 `;
 
 const ScrollContainer = styled.div`
@@ -81,7 +74,6 @@ const Gallery = () => {
 
   return (
     <GalleryWrapper>
-      <Title>갤러리</Title>
       <ScrollContainer>
         <GalleryContainer>
           <Row>

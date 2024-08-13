@@ -9,24 +9,25 @@ const ProfileContainer = styled.div`
   margin: 0 auto;
   padding: 0;
   width: 100%;
-  max-width: 100%; /* 컨테이너의 양 옆 여백을 최소화 */
+  max-width: 100%;
   @media (max-width: 768px) {
-    flex-direction: row; /* 모바일에서도 가로 배열 유지 */
+    flex-direction: row;
     align-items: center;
   }
+  margin-bottom: 100px;
 `;
 
 const ProfileItem = styled.div`
-  flex: 1;  /* 각 항목이 동일한 너비를 가짐 */
+  flex: 1; 
   text-align: center;
   padding: 7px;
   margin: 0;
 `;
 
 const ProfileImage = styled.img`
-  width: 100%;  /* 각 이미지가 부모의 너비를 100% 차지 */
-  height: auto;
-  border-radius: 4%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   object-fit: cover;
 `;
 
