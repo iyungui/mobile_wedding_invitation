@@ -25,14 +25,14 @@ const Row = styled.div`
 
 const SquareImageWrapper = styled.div`
   flex-shrink: 0;
-  width: 200px; /* 정사각형 이미지의 너비 */
-  height: 200px; /* 정사각형 이미지의 높이 */
+  width: 250px; /* 정사각형 이미지의 너비 */
+  height: 250px; /* 정사각형 이미지의 높이 */
 `;
 
 const RectangularImageWrapper = styled.div`
   flex-shrink: 0;
-  width: 300px; /* 직사각형 이미지의 너비 */
-  height: 200px; /* 직사각형 이미지의 높이 (정사각형 이미지와 동일한 높이) */
+  width: 200px; /* 직사각형 이미지의 너비 */
+  height: auto; /* 직사각형 이미지의 높이 (정사각형 이미지와 동일한 높이) */
 `;
 
 const Image = styled.img`
@@ -47,7 +47,6 @@ const TopImage = styled.img`
   height: 100%;
   object-fit: cover; /* 이미지가 프레임에 맞게 크기 조절되며, 잘릴 수 있음 */
   border-radius: 0; /* 모서리를 각지게 설정 */
-  object-position: top; /* 이미지의 위쪽 부분을 보이게 설정 */
 `;
 
 const Gallery = () => {
@@ -58,8 +57,6 @@ const Gallery = () => {
     '/photos/IMG_5468.JPG',
     '/photos/IMG_5469.JPG',
     '/photos/IMG_5470.JPG',
-    '/photos/IMG_5463.JPG',
-    '/photos/IMG_5472.JPG',
     // 필요한만큼 추가...
   ];
 
@@ -69,6 +66,9 @@ const Gallery = () => {
     '/photos/IMG_5465.JPG',
     '/photos/IMG_5466.JPG',
     '/photos/IMG_5467.JPG',
+    '/photos/IMG_5472.JPG',
+    '/photos/IMG_5463.JPG',
+
     // 필요한만큼 추가...
   ];
 
