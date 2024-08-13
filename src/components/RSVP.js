@@ -6,7 +6,7 @@ const RSVPContainer = styled.div`
   margin: 40px 0;
   text-align: left;
   display: inline-block;
-  width: 100%;
+  width: 90%;
   max-width: 400px;
 `;
 

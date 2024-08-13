@@ -15,7 +15,6 @@ import Notice from "./Notice";
 const fontFamily = "'Pretendard', 'Noto Sans KR', sans-serif";
 
 const ContentContainer = styled.div`
-  padding: 10px;
   text-align: center;
   line-height: 2;
   width: 100%;
