@@ -9,7 +9,7 @@ import RSVP from "./RSVP";
 import Gallery from "./Gallery";
 import OverlayComponent from "./OverlayComponent";
 import Account from "./Account_layout/Account";
-
+import Footer from "./Footer";
 
 const fontFamily = "'MaruBuri-regular', 'Noto Sans KR', sans-serif";
 
@@ -96,6 +96,10 @@ const InvitationContent = () => {
         transition={{ duration: 0.5 }}
       >
         <Gallery />
+      </Section>
+
+      <Section>
+        <Footer />
       </Section>
     </ContentContainer>
   );

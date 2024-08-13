@@ -1,23 +1,37 @@
-// // src/components/Footer.js
-// import React from 'react';
-// import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-// const FooterContainer = styled.footer`
-//   padding: 20px;
-//   text-align: center;
-//   background-color: #fff;
-//   position: fixed;
-//   bottom: 0;
-//   width: 100%;
-//   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-// `;
+const FooterContainer = styled.footer`
+  font-size: 12px;
+  color: #111111;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+`;
 
-// const Footer = () => {
-//   return (
-//     <FooterContainer>
-//       <p>&copy; 이융의</p>
-//     </FooterContainer>
-//   );
-// };
+const Link = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
-// export default Footer;
+const Footer = () => {
+  return (
+    <FooterContainer>
+      <p>
+        Copyright 2024.{" "}
+        <Link
+          href="https://github.com/iyungui"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          iyungui
+        </Link>
+        . All rights reserved.
+      </p>
+    </FooterContainer>
+  );
+};
+
+export default Footer;
