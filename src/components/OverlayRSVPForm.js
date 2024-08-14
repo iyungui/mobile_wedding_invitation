@@ -38,14 +38,6 @@ const CloseButton = styled.button`
   display: block;
   width: 100%;
   text-align: center;
-
-  &:hover {
-    background-color: #a8a8a8;
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Title = styled.h2`

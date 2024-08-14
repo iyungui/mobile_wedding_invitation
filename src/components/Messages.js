@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const MessageContainer = styled.div`
-  padding: 10px;
+  margin-bottom: 100px;
 `;
 
 const Message3 = styled(motion.p)`
@@ -31,14 +31,20 @@ const PlaceName = styled(motion.p)`
   color: #303030;
   font-size: 15px;
   font-family: "MaruBuri-regular";
-  margin-bottom: 150px;
+  margin-top: 20px;
 `;
 
 const PlaceImage = styled(motion.img)`
   width: 40%;
   height: auto;
   object-fit: cover;
-  margin-bottom: 20px;
+`;
+
+const LastImage = styled(motion.img)`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 40px;
 `;
 
 const messageVariants = {
@@ -90,15 +96,6 @@ export const Messages = () => (
       설레는 첫걸음을 함께 빛내주세요
     </Message3>
 
-    <PlaceImage
-      src="/photos/wedding_hole_logo.png"
-      alt="logo"
-      variants={messageVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    />
-
     <PlaceName
       variants={messageVariants}
       initial="hidden"
@@ -109,6 +106,26 @@ export const Messages = () => (
       <br/>
       <HighLight>빌라드지디 청담</HighLight>
     </PlaceName>
+
+    <PlaceImage
+      src="/photos/wedding_hole_logo.png"
+      alt="logo"
+      variants={messageVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    />
+
+    <LastImage      
+      src="/photos/profile.jpeg"
+      alt="logo"
+      variants={messageVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    />
+
+
 
   </MessageContainer>
 );

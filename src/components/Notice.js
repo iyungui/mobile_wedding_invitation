@@ -6,7 +6,7 @@ const NoticeContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   font-family: "MaruBuri-regular", sans-serif;
-  margin-top: 100px;
+  margin-top: 0px;
 `;
 
 // Tabs container
@@ -17,7 +17,6 @@ const Tabs = styled.div`
 
 // Individual Tab
 const Tab = styled.div`
-  padding: 10px;
   font-weight: bold;
   color: ${(props) => (props.active ? "#006c80" : "#888")};
   border-bottom: ${(props) => (props.active ? "2px solid #006c80" : "none")};
@@ -44,6 +43,10 @@ const Content = styled.div`
   font-size: 14px;
 `;
 
+const HighLight = styled.span`
+  font-family: "MaruBuri-semibold";
+`;
+
 const Notice = () => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -53,11 +56,12 @@ const Notice = () => {
       content: (
         <>
           <p>
-            차량 발렛 주차(3시간) 입니다.<br />
-            식사를 안 하시고 예식 종료 전<br />
-            일찍 나가셔야 하시는 분들은
+            <HighLight>차량 발렛 주차 (3시간 무료) 입니다.</HighLight>
+            <br /><br />
+            식사를 하지 않고 예식 종료 전<br />
+            일찍 나가시는 경우,
             <br />
-            차량 출차 시 지연이 예상되오니,
+            차량 출차 시 지연이 예상되오니
             <br />
             주차 맡기실 때 발렛 직원분께
             <br />
@@ -65,34 +69,39 @@ const Notice = () => {
           </p>
         </>
       ),
-      image: "/photos/15707874241614912816.jpg",
+      image: "/photos/parkingNotice-1.jpeg",
     },
     {
       label: "식사 안내",
       content: (
         <>
           <p>
-            식사와 예식이 한 곳에서 진행되는 동시예식입니다.<br/>(2부에 식사 진행)
+            <HighLight>
+            식사와 예식이 한 곳에서 이뤄지는 동시예식입니다.<br/>(2부에 식사를 진행합니다.)
+            </HighLight>
           </p>
           <p>
-            예식 시작과 동시에 먼저 식사를 하실 하객분들은<br/>1층 연회장에서 여유
-            있는 식사가 가능하십니다.
+            예식 시작과 함께 먼저 식사를 하실 하객분들은<br/>1층 연회장에서 여유
+            있는 식사가 가능합니다.
           </p>
           <p>
-            3층에 웰컴 드링크와 핑거푸드를 준비했습니다.<br />예식 전 자유롭고
-            편안하게 시간 보내시기를 바랍니다.
+            3층에 웰컴드링크와 핑거푸드를 준비했습니다.<br />예식 전 자유롭고
+            편안한 시간 보내시길 바랍니다.
           </p>
         </>
       ),
-      image: "/photos/notice-1.jpg",
+      image: "/photos/resaurantNotice.jpeg",
     },
     {
       label: "안내사항",
       content: (
         <>
-          <p>1층- 연회장, 리셉션 데스크</p>
+        <HighLight>
+        <p>1층- 연회장, 리셉션 데스크</p>
           <p>2층- 로비, 예식홀</p>
           <p>3층- 신부대기실</p>
+        </HighLight>
+
           <br/>
           <p>
             단독 건물에서 진행되기에<br/>엘리베이터가 보이는 곳에 없습니다.<br/>
@@ -105,7 +114,7 @@ const Notice = () => {
           </p>
         </>
       ),
-      image: "/photos/notice-2.jpg",
+      image: "/photos/NoticeImage.jpeg",
     },
   ];
 

@@ -13,6 +13,7 @@ const CalendarContainer = styled.div`
 const Header = styled.div`
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #36474a;
   text-align: left;
   margin-left: 10px;
   line-height: 1.5;

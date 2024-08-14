@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const GalleryWrapper = styled.div`
   padding: 0px 0;
+  margin-bottom: 120px;
 `;
 
 const ScrollContainer = styled.div`
@@ -55,7 +56,7 @@ const Gallery = () => {
     '/photos/IMG_5461.JPG',
     '/photos/IMG_5462.JPG',
     '/photos/IMG_5468.JPG',
-    '/photos/IMG_5469.JPG',
+    '/photos/리사이즈갤러리사진.jpeg',
     '/photos/IMG_5470.JPG',
     // 필요한만큼 추가...
   ];

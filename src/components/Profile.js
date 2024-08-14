@@ -22,6 +22,7 @@ const ProfileItem = styled.div`
   text-align: center;
   padding: 7px;
   margin: 0;
+  font-family: "MaruBuri-regular";
 `;
 
 const ProfileImage = styled.img`
@@ -34,11 +35,12 @@ const ProfileImage = styled.img`
 const ProfileName = styled.h3`
   font-size: 17px;
   margin-bottom: 5px;
+  font-family: "MaruBuri-light";
 `;
 
 const ProfileDescription = styled.p`
   font-size: 14px;
-  font-weight: 400;
+  font-family: "MaruBuri-light";
 `;
 
 const GroomThinText = styled.span`
@@ -58,7 +60,7 @@ const Highlight = styled.span`
 `;
 
 const HighLightWithBackground = styled.span`
-  background-color: #fff9c2;
+  background-color: #fffbd6;
   border-radius: 4px;
 `;
 

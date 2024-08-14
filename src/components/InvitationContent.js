@@ -13,6 +13,8 @@ import Account from "./Account_layout/Account";
 import Footer from "./Footer";
 import Notice from "./Notice";
 import Vegetarian from "./Vegetarian";
+import LastPhoto from "./LastPhoto";
+import KakaoShareButton from "./KakaoShareButton";
 
 const fontFamily = "'MaruBuri-regular', 'Noto Sans KR', sans-serif";
 
@@ -132,6 +134,9 @@ const InvitationContent = () => {
         <Gallery />
       </Section>
 
+
+      <SubTitle>NOTICE</SubTitle>
+      <Title>공지사항</Title>
       <Section
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -151,6 +156,19 @@ const InvitationContent = () => {
         <Vegetarian />
       </Section>
 
+      <Section
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <LastPhoto />
+      </Section>
+
+      <Section>
+        <KakaoShareButton />  
+      </Section>
+      
       <Section>
         <Footer />
       </Section>
