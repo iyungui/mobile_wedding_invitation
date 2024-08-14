@@ -69,7 +69,7 @@ const Notice = () => {
           </p>
         </>
       ),
-      image: "/photos/parkingNotice-1.jpeg",
+      image: "/photos/parking2.jpeg",
     },
     {
       label: "식사 안내",
