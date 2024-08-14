@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 import InvitationContent from "./components/InvitationContent";
 import headerVideo from "./assests/headerVideo.MP4";
 import backgroundMusic from "./assests/backgroundMusic.mp3";
 import soundOnIcon from "./assests/icons/1.png"; // 음악 재생 아이콘
 import soundOffIcon from "./assests/icons/2.png"; // 음소거 아이콘
+import scrollGif from "./assests/icons/scroll-large.gif"; // 스크롤 GIF 이미지
 
 const VideoContainer = styled.div`
   position: relative;
@@ -19,6 +20,36 @@ const Video = styled.video`
   height: 100%;
   object-fit: cover;
 `;
+
+
+// 애니메이션 정의
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+
+// ScrollIcon 스타일링 및 애니메이션 적용
+const ScrollIcon = styled.img`
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  width: 100px; /* GIF의 크기를 조정합니다. 필요에 따라 조정 */
+  height: auto;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  ${(props) =>
+    props.show &&
+    css`
+      animation: ${fadeIn} 1s ease-in;
+    `}
+  display: ${(props) => (props.show ? 'block' : 'none')};
+  z-index: 1000;
+`;
+
 
 const GradientOverlay = styled.div`
   position: absolute;
@@ -59,7 +90,9 @@ const AudioIcon = styled.img`
 
 const App = () => {
   const [backgroundMusicPlaying, setBackgroundMusicPlaying] = useState(false);
+  const [showScrollIcon, setShowScrollIcon] = useState(false);
   const audioRef = useRef(new Audio(backgroundMusic));
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -68,6 +101,20 @@ const App = () => {
     return () => {
       audio.pause();
       audio.currentTime = 0;
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    const handleVideoEnd = () => {
+      setShowScrollIcon(true);
+    };
+
+    video.addEventListener('ended', handleVideoEnd);
+
+    return () => {
+      video.removeEventListener('ended', handleVideoEnd);
     };
   }, []);
 
@@ -86,8 +133,9 @@ const App = () => {
     <>
       <GlobalStyles />
       <VideoContainer>
-        <Video src={headerVideo} autoPlay muted playsInline />
+        <Video ref={videoRef} src={headerVideo} autoPlay muted playsInline />
         <GradientOverlay />
+        <ScrollIcon src={scrollGif} show={showScrollIcon} alt="Scroll" />
         <AudioIconWrapper onClick={toggleMusic}>
           <AudioIcon
             src={backgroundMusicPlaying ? soundOnIcon : soundOffIcon}
