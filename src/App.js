@@ -1,11 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import styled, { keyframes, css } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
-import InvitationContent from "./components/InvitationContent";
 import backgroundMusic from "./assests/backgroundMusic.mp3";
 import soundOnIcon from "./assests/icons/1.png"; // 음악 재생 아이콘
 import soundOffIcon from "./assests/icons/2.png"; // 음소거 아이콘
 import scrollGif from "./assests/icons/scroll-large.gif"; // 스크롤 GIF 이미지
+
+// Lazy load the InvitationContent component
+const InvitationContent = React.lazy(() => import("./components/InvitationContent"));
 
 const VideoContainer = styled.div`
   position: relative;
@@ -21,7 +23,7 @@ const Video = styled.video`
 `;
 
 
-// 애니메이션 정의
+// Scroll Image
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -31,13 +33,11 @@ const fadeIn = keyframes`
   }
 `;
 
-
-// ScrollIcon 스타일링 및 애니메이션 적용
 const ScrollIcon = styled.img`
   position: absolute;
   bottom: 80px;
   right: 10px;
-  width: 100px; /* GIF의 크기를 조정합니다. 필요에 따라 조정 */
+  width: 100px;
   height: auto;
   opacity: ${(props) => (props.show ? 1 : 0)};
   ${(props) =>
@@ -50,6 +50,7 @@ const ScrollIcon = styled.img`
 `;
 
 
+// Gradient Overlay
 const GradientOverlay = styled.div`
   position: absolute;
   bottom: 0;
@@ -61,6 +62,41 @@ const GradientOverlay = styled.div`
     #fafafa 100%
   );
 `;
+// Spinner
+const SpinnerContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255);
+  z-index: 1001;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  transition: opacity 0.5s ease-in-out;
+`;
+
+const Spinner = styled.div`
+  border: 4px solid rgba(128, 128, 128, 0.3);
+  border-top: 4px solid #808080; /* 진 회색 */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+
 
 const ContentSection = styled.section`
   width: 100%;
@@ -73,8 +109,8 @@ const AudioIconWrapper = styled.div`
   right: 20px;
   width: 50px;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.5); /* 배경 색상 추가 */
-  border-radius: 50%; /* 원형으로 만들기 */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,12 +126,13 @@ const AudioIcon = styled.img`
 const App = () => {
   const [backgroundMusicPlaying, setBackgroundMusicPlaying] = useState(false);
   const [showScrollIcon, setShowScrollIcon] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const audioRef = useRef(new Audio(backgroundMusic));
   const videoRef = useRef(null);
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.loop = true; // 음악 반복 재생
+    audio.loop = true;
 
     return () => {
       audio.pause();
@@ -110,10 +147,16 @@ const App = () => {
       setShowScrollIcon(true);
     };
 
-    video.addEventListener('ended', handleVideoEnd);
+    const handleVideoLoaded = () => {
+      setVideoLoaded(true);
+    };
+
+    video.addEventListener("loadeddata", handleVideoLoaded);
+    video.addEventListener("ended", handleVideoEnd);
 
     return () => {
-      video.removeEventListener('ended', handleVideoEnd);
+      video.removeEventListener("loadeddata", handleVideoLoaded);
+      video.removeEventListener("ended", handleVideoEnd);
     };
   }, []);
 
@@ -132,7 +175,20 @@ const App = () => {
     <>
       <GlobalStyles />
       <VideoContainer>
-        <Video ref={videoRef} src="/photos/headerVideo.MP4" autoPlay muted playsInline />
+        {!videoLoaded && (
+          <SpinnerContainer show={!videoLoaded}>
+            <Spinner />
+          </SpinnerContainer>
+        )}
+        <Video
+          ref={videoRef}
+          src="/photos/headerVideo.MP4"
+          autoPlay
+          muted
+          playsInline
+          onLoadedData={() => setVideoLoaded(true)}
+          style={{ display: videoLoaded ? 'block' : 'none' }}
+        />
         <GradientOverlay />
         <ScrollIcon src={scrollGif} show={showScrollIcon} alt="Scroll" />
         <AudioIconWrapper onClick={toggleMusic}>
@@ -143,7 +199,9 @@ const App = () => {
         </AudioIconWrapper>
       </VideoContainer>
       <ContentSection>
-        <InvitationContent />
+        <Suspense fallback={<div>Loading...</div>}>
+          <InvitationContent />
+        </Suspense>
       </ContentSection>
     </>
   );
