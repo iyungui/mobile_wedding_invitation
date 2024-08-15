@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 import InvitationContent from "./components/InvitationContent";
-import headerVideo from "./assests/headerVideo.MP4";
 import backgroundMusic from "./assests/backgroundMusic.mp3";
 import soundOnIcon from "./assests/icons/1.png"; // 음악 재생 아이콘
 import soundOffIcon from "./assests/icons/2.png"; // 음소거 아이콘
@@ -133,7 +132,7 @@ const App = () => {
     <>
       <GlobalStyles />
       <VideoContainer>
-        <Video ref={videoRef} src={headerVideo} autoPlay muted playsInline />
+        <Video ref={videoRef} src="/photos/headerVideo.MP4" autoPlay muted playsInline />
         <GradientOverlay />
         <ScrollIcon src={scrollGif} show={showScrollIcon} alt="Scroll" />
         <AudioIconWrapper onClick={toggleMusic}>
