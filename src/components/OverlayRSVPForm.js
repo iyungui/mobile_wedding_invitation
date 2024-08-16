@@ -1,29 +1,15 @@
-import React, { useState } from "react"; // 'onClose' 제거
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-
 
 const OverlayFormContainer = styled.div`
   text-align: left;
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+  position: relative; /* Make sure the close icon is positioned correctly */
 `;
 
-const CloseIcon = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 40px;
-  color: rgba(128, 128, 128, 0.7);
-  cursor: pointer;
-
-  &:hover {
-    color: rgba(128, 128, 128, 1);
-  }
-`;
 
 const CloseButton = styled.button`
   padding: 12px;
@@ -68,16 +54,24 @@ const ButtonGroup = styled.div`
 const SelectButton = styled.button`
   flex: 1;
   padding: 10px;
-  font-family: ${props => (props.selected ? "MaruBuri-SemiBold" : "MaruBuri-regular")};
+  font-family: ${(props) =>
+    props.selected ? "MaruBuri-SemiBold" : "MaruBuri-regular"};
   font-size: 12px;
   background-color: #fff;
-  color: ${props => (props.selected ? '#ffb76f' : '#303030')};
-  border: 1px solid ${props => (props.selected ? '#ffb76f' : '#e0e0e0')};
-  margin-right: ${props => (props.marginRight ? '10px' : '0')};
+  color: ${(props) => (props.selected ? "#ffb76f" : "#303030")};
+  border: 1px solid ${(props) => (props.selected ? "#ffb76f" : "#e0e0e0")};
+  margin-right: ${(props) => (props.marginRight ? "10px" : "0")};
   cursor: pointer;
 `;
 
 const Input = styled.input`
+  padding: 10px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+`;
+
+const TextArea = styled.textarea`
   padding: 10px;
   font-size: 12px;
   margin-bottom: 20px;
@@ -111,8 +105,9 @@ const SubmitButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   display: block;
-  font-family: 'MaruBuri-extralight', 'Noto Sans KR', sans-serif; 
+  font-family: "MaruBuri-extralight", "Noto Sans KR", sans-serif;
 `;
+
 const LoadingMessage = styled.p`
   color: #1a5319;
   font-size: 14px;
@@ -128,6 +123,7 @@ const OverlayRSVPForm = ({ onClose }) => {
     phone: "",
     attendees: "",
     meal: "",
+    companionNames: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -153,6 +149,10 @@ const OverlayRSVPForm = ({ onClose }) => {
     if (!formData.name) formErrors.name = "성함을 입력해 주세요.";
     if (!formData.phone) formErrors.phone = "대표 연락처를 입력해 주세요.";
     if (!formData.attendees) formErrors.attendees = "동행인원을 입력해 주세요.";
+
+    if (formData.attendees >= 2 && !formData.companionNames) {
+      formErrors.companionNames = "동행인 이름을 입력해 주세요.";
+    }
 
     return formErrors;
   };
@@ -182,6 +182,7 @@ const OverlayRSVPForm = ({ onClose }) => {
           phone: "",
           attendees: "",
           meal: "",
+          companionNames: "",
         });
         setErrors({});
         setSubmitted(false);
@@ -198,7 +199,6 @@ const OverlayRSVPForm = ({ onClose }) => {
 
   return (
     <OverlayFormContainer>
-      <CloseIcon onClick={onClose}>×</CloseIcon> {/* x 버튼 */}
       <Title>참석 여부 전달하기</Title>
       <Form onSubmit={handleSubmit}>
         <ButtonGroup>
@@ -263,7 +263,6 @@ const OverlayRSVPForm = ({ onClose }) => {
         {submitted && errors.phone && (
           <ErrorMessage>{errors.phone}</ErrorMessage>
         )}
-
         <Label htmlFor="attendees">동행인원(본인 포함)</Label>
         <Input
           type="number"
@@ -275,6 +274,23 @@ const OverlayRSVPForm = ({ onClose }) => {
         />
         {submitted && errors.attendees && (
           <ErrorMessage>{errors.attendees}</ErrorMessage>
+        )}
+
+        {formData.attendees >= 2 && (
+          <>
+            <Label htmlFor="companionNames">동행인 이름</Label>
+            <TextArea
+              id="companionNames"
+              name="companionNames"
+              value={formData.companionNames}
+              onChange={handleInputChange}
+              rows="3"
+              placeholder="동행인의 이름을 입력해 주세요. (이름을 줄 바꿈으로 구분)"
+            />
+            {submitted && errors.companionNames && (
+              <ErrorMessage>{errors.companionNames}</ErrorMessage>
+            )}
+          </>
         )}
 
         <Label>식사 여부</Label>
@@ -304,7 +320,7 @@ const OverlayRSVPForm = ({ onClose }) => {
       {responseMessage && (
         <>
           <SuccessMessage>{responseMessage}</SuccessMessage>
-          <CloseButton onClick={onClose}>닫기</CloseButton> {/* 닫기 버튼 */}
+          <CloseButton onClick={onClose}>닫기</CloseButton> {/* Close button */}
         </>
       )}
     </OverlayFormContainer>
