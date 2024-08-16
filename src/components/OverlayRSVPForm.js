@@ -285,7 +285,7 @@ const OverlayRSVPForm = ({ onClose }) => {
               value={formData.companionNames}
               onChange={handleInputChange}
               rows="3"
-              placeholder="동행인의 이름을 입력해 주세요. (이름을 줄 바꿈으로 구분)"
+              placeholder="동행인 이름을 쉼표로 구분하여 입력하세요."
             />
             {submitted && errors.companionNames && (
               <ErrorMessage>{errors.companionNames}</ErrorMessage>
