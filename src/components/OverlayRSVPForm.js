@@ -71,13 +71,6 @@ const Input = styled.input`
   border: 1px solid #e0e0e0;
 `;
 
-const TextArea = styled.textarea`
-  padding: 10px;
-  font-size: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #e0e0e0;
-`;
-
 const ErrorMessage = styled.p`
   color: red;
   font-size: 12px;
@@ -121,9 +114,7 @@ const OverlayRSVPForm = ({ onClose }) => {
     attendance: "",
     name: "",
     phone: "",
-    attendees: "",
     meal: "",
-    companionNames: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -148,11 +139,6 @@ const OverlayRSVPForm = ({ onClose }) => {
       formErrors.attendance = "참석 여부를 선택해 주세요.";
     if (!formData.name) formErrors.name = "성함을 입력해 주세요.";
     if (!formData.phone) formErrors.phone = "대표 연락처를 입력해 주세요.";
-    if (!formData.attendees) formErrors.attendees = "동행인원을 입력해 주세요.";
-
-    if (formData.attendees >= 2 && !formData.companionNames) {
-      formErrors.companionNames = "동행인 이름을 입력해 주세요.";
-    }
 
     return formErrors;
   };
@@ -180,9 +166,7 @@ const OverlayRSVPForm = ({ onClose }) => {
           attendance: "",
           name: "",
           phone: "",
-          attendees: "",
-          meal: "",
-          companionNames: "",
+          meal: ""
         });
         setErrors({});
         setSubmitted(false);
@@ -262,35 +246,6 @@ const OverlayRSVPForm = ({ onClose }) => {
         />
         {submitted && errors.phone && (
           <ErrorMessage>{errors.phone}</ErrorMessage>
-        )}
-        <Label htmlFor="attendees">동행인원(본인 포함)</Label>
-        <Input
-          type="number"
-          id="attendees"
-          name="attendees"
-          value={formData.attendees}
-          onChange={handleInputChange}
-          min="1"
-        />
-        {submitted && errors.attendees && (
-          <ErrorMessage>{errors.attendees}</ErrorMessage>
-        )}
-
-        {formData.attendees >= 2 && (
-          <>
-            <Label htmlFor="companionNames">동행인 이름</Label>
-            <TextArea
-              id="companionNames"
-              name="companionNames"
-              value={formData.companionNames}
-              onChange={handleInputChange}
-              rows="3"
-              placeholder="동행인 이름을 쉼표로 구분하여 입력하세요."
-            />
-            {submitted && errors.companionNames && (
-              <ErrorMessage>{errors.companionNames}</ErrorMessage>
-            )}
-          </>
         )}
 
         <Label>식사 여부</Label>
