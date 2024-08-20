@@ -23,7 +23,7 @@ const KakaoShareButton = () => {
     if (window.Kakao) {
       window.Kakao.Share.sendCustom({
         templateId: 111107,
-        installTalk: true,
+        installTalk: false,
       });
     } else {
       console.error("Kakao SDK is not available");
