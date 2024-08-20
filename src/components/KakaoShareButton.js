@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -19,6 +19,12 @@ const Button = styled.button`
 
 
 const KakaoShareButton = () => {
+  useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init('5ba12f6f0cbae79e5cbc7ac39f0548b0'); // 여기에 실제 카카오 앱 키를 입력하세요.
+    }
+  }, []);
+
   const sendKakaoMessage = () => {
     if (window.Kakao) {
       window.Kakao.Share.sendCustom({
@@ -36,5 +42,6 @@ const KakaoShareButton = () => {
     </Button>
   );
 };
+
 
 export default KakaoShareButton;
