@@ -109,7 +109,7 @@ const Calendar = () => {
     <CalendarContainer>
       <Header>
         구월의 <br />
-        스물두번째 날.
+        스물두번째 날, 일요일
       </Header>
       <Divider />
       <DaysOfWeek>
